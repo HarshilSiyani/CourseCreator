@@ -10,13 +10,13 @@
   <!-- QUESTIONS LISTS -->
   <div data-controller="nested-form">
     <template data-target='nested-form.template'>
-      <%= form.simple_fields_for :questions, Question.new, child_index: 'TEMPLATE_RECORD' do |question| %>
-        <%= render "#{contentable.class.table_name}/question_fields", form: question, contentable: contentable %>
+      <%= form.simple_fields_for :questions, Question.new, child_index: 'TEMPLATE_RECORD' do |question_form| %>
+        <%= render "#{contentable.class.table_name}/question_fields", form: question_form, contentable: contentable %>
       <% end %>
     </template>
 
-    <%= form.simple_fields_for :questions do |question| %>
-      <%= render "#{contentable.class.table_name}/question_fields", form: question, contentable: contentable %>
+    <%= form.simple_fields_for :questions do |question_form| %>
+      <%= render "#{contentable.class.table_name}/question_fields", form: question_form, contentable: contentable %>
     <% end %>
 
     <div data-target="nested-form.add_item">

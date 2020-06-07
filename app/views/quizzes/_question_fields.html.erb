@@ -12,17 +12,17 @@
   <!-- ANSWER LISTS -->
   <div class="answers-group" data-controller="nested-form">
     <template data-target='nested-form.template'>
-      <%= form.simple_fields_for :answers, Answer.new, child_index: 'TEMPLATE_RECORD' do |answer| %>
-        <%= render "#{contentable.class.table_name}/answer_fields", subform: answer %>
+      <%= form.simple_fields_for :answers, Answer.new, child_index: 'TEMPLATE_CHILD' do |answer_form| %>
+        <%= render "#{contentable.class.table_name}/answer_fields", subform: answer_form %>
       <% end %>
     </template>
 
-    <%= form.simple_fields_for :answers do |answer| %>
-      <%= render "#{contentable.class.table_name}/answer_fields", subform: answer %>
+    <%= form.simple_fields_for :answers do |answer_form| %>
+      <%= render "#{contentable.class.table_name}/answer_fields", subform: answer_form %>
     <% end %>
 
     <div data-target="nested-form.add_item" class="text-right">
-      <%= link_to "+ Choice", "#", data: { action: "nested-form#add_association" }, class: "small" %>
+      <%= link_to "+ Choice", "#", data: { action: "nested-form#add_association_child" }, class: "small" %>
     </div>
   </div>
 </div>

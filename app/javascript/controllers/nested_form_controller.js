@@ -9,6 +9,12 @@ export default class extends Controller {
     this.add_itemTarget.insertAdjacentHTML('beforebegin', content)
   }
 
+  add_association_child(event) {
+    event.preventDefault()  
+    var content = this.templateTarget.innerHTML.replace(/TEMPLATE_CHILD/g, new Date().valueOf())
+    this.add_itemTarget.insertAdjacentHTML('beforebegin', content)
+  }
+
   remove_association(event) {
     event.preventDefault()
     let item = event.target.closest(".nested-fields")
