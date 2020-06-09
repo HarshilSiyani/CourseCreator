@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :courses, foreign_key: "teacher_id"
   has_many :enrollments, foreign_key: "student_id"
+
 end
