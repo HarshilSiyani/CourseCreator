@@ -12,13 +12,16 @@ class CoursesController < ApplicationController
     if @course.save
       redirect_to course_path(@course)
     else
-      raise
       render :new
     end
   end
 
   def show
     @course = Course.find(params[:id])
+  end
+
+  def index
+    @courses = current_user.courses
   end
 
   private

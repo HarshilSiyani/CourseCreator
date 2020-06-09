@@ -3,6 +3,7 @@
   <h3><b><%= @course.name %></b></h3>
   <li><%= @course.category %></li>
   <p><%= @course.description %></p>
-
-<%= link_to "Enroll", course_enrollments_path(@course), method: :post%>
+<% if current_user != @course.teacher %>
+<%= link_to "Enroll",  course_enrollments_path(@course), method: :post %>
+<% end %>
 </div>

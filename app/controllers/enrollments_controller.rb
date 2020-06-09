@@ -8,16 +8,15 @@ class EnrollmentsController < ApplicationController
     @enrollment = Enrollment.new(enrollment_params)
     @enrollment.student = current_user
     if @enrollment.save
-      #need to redirect to study/course/show later
-      redirect_to course_path(@enrollment.course)
+      redirect_to user_enrollments_path(current_user)
     else
       redirect_to course_path(@enrollment.course)
     end
   end
 
-  # def show
-  #   @enrollments = current_user.enrollments
-  # end
+  def index
+    @enrollments = current_user.enrollments
+  end
 
   private
 

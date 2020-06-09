@@ -8,6 +8,11 @@ Rails.application.routes.draw do
     resources :module, only: [:new, :create]
   end
 
+  resources :users, only: :show do
+    resources :enrollments, only: :index
+    resources :courses, only: :index
+  end
+
   patch '/courses/:id/publish', to: 'courses#publish'
 
 end
