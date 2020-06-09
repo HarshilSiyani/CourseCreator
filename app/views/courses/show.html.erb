@@ -1,0 +1,8 @@
+<h1>Your Courses</h1>
+<div class = "card m-5 p-3">
+  <h3><b><%= @course.name %></b></h3>
+  <li><%= @course.category %></li>
+  <p><%= @course.description %></p>
+
+<%= link_to "Enroll", course_enrollments_path(@course), method: :post%>
+</div>
