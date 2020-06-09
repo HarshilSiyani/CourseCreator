@@ -10,7 +10,6 @@ class EnrollmentsController < ApplicationController
     if @enrollment.save
       #need to redirect to study/course/show later
       redirect_to course_path(@enrollment.course)
-      raise
     else
       redirect_to course_path(@enrollment.course)
     end
