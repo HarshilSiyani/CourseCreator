@@ -65,6 +65,18 @@ ActiveRecord::Schema.define(version: 2020_06_09_033957) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "study_modules", force: :cascade do |t|
+    t.integer "index"
+    t.string "name"
+    t.bigint "course_id", null: false
+    t.string "contentable_type"
+    t.bigint "contentable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contentable_type", "contentable_id"], name: "index_study_modules_on_contentable_type_and_contentable_id"
+    t.index ["course_id"], name: "index_study_modules_on_course_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -84,4 +96,5 @@ ActiveRecord::Schema.define(version: 2020_06_09_033957) do
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users", column: "student_id"
   add_foreign_key "questions", "quizzes"
+  add_foreign_key "study_modules", "courses"
 end
