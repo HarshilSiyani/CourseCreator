@@ -1,0 +1,13 @@
+<h1>Your currently enrolled courses</h1>
+
+<div class = "d-flex flex-wrap">
+<% @enrollments.each do |enrollment| %>
+  <div class="card bg-light mb-3 m-5" style="max-width: 18rem;min-width: 18rem;">
+  <div class="card-header"><h3><b><%= enrollment.course.name %></b></h3></div>
+  <div class="card-body">
+    <h5 class="card-title"><%= enrollment.course.category %></h5>
+    <p class="card-text"><%= enrollment.course.description %></p>
+  </div>
+</div>
+<% end %>
+</div>
