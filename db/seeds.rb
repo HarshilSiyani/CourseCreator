@@ -54,4 +54,22 @@ Enrollment.create({
   student: lisa
 })
 
+# Question 1
+question_1 = Question.create!(text: "What is IRB?", quiz: quiz)
+question_1.answers.create!([
+  {question: question_1, correct: true, text: "It's a run time environemt for Ruby."},
+  {question: question_1, correct: false, text: "Rails use this to host website."},
+  {question: question_1, correct: false, text: "Not related to Ruby or Rails."},
+  {question: question_1, correct: false, text: "I don't know!"},
+])
+
+# Question 2
+question_2 = Question.create!(text: "What is OOP?", quiz: quiz)
+question_2.answers.create!([
+  {question: question_2, correct: true, text: "Object-Oriented Programming."},
+  {question: question_2, correct: false, text: "Onward on Programming."},
+  {question: question_2, correct: false, text: "Not related to Ruby or Rails."},
+  {question: question_2, correct: false, text: "I don't know!"},
+])
+
 puts "--- --- Finished seeding!"
