@@ -15,6 +15,10 @@ class EnrollmentsController < ApplicationController
     end
   end
 
+  # def show
+  #   @enrollments = current_user.enrollments
+  # end
+
   private
 
   def enrollment_params
