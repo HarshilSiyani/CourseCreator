@@ -16,11 +16,11 @@ user.password = "abc123"
 user.save!
 
 course = Course.create!({
-  user: user,
+  teacher: user,
   category: "Information Technology",
   published: false,
-  # name: "Full stack web development",
-  # description: "Developing website from A to Z",
+  name: "Full stack web development",
+  description: "Developing website from A to Z",
 })
 
 lesson = Lesson.create!(text: "Welcome to Ruby!")
@@ -38,6 +38,20 @@ StudyModule.create!({
   course: course,
   name: "First quizz",
   contentable: quiz
+})
+
+lisa = User.new({
+  first_name: "Lisa", 
+  last_name: "Huang", 
+  email: "lisa@study.com"
+})
+lisa.password = "abc123"
+lisa.save!
+
+Enrollment.create({
+  module_index: 1,
+  course: Course.first,
+  student: lisa
 })
 
 puts "--- --- Finished seeding!"
