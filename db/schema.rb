@@ -27,18 +27,20 @@ ActiveRecord::Schema.define(version: 2020_06_09_031956) do
   create_table "courses", force: :cascade do |t|
     t.string "category"
     t.boolean "published"
-    t.integer "teacher_id"
+    t.bigint "teacher_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["teacher_id"], name: "index_courses_on_teacher_id"
   end
 
   create_table "enrollments", force: :cascade do |t|
     t.integer "module_index"
-    t.integer "student_id"
     t.bigint "course_id", null: false
+    t.bigint "student_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["course_id"], name: "index_enrollments_on_course_id"
+    t.index ["student_id"], name: "index_enrollments_on_student_id"
   end
 
   create_table "lessons", force: :cascade do |t|
@@ -88,7 +90,9 @@ ActiveRecord::Schema.define(version: 2020_06_09_031956) do
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "courses", "users", column: "teacher_id"
   add_foreign_key "enrollments", "courses"
+  add_foreign_key "enrollments", "users", column: "student_id"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "study_modules", "courses"
 end
