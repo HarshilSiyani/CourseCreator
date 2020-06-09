@@ -7,11 +7,12 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(course_params)
-    @course.user = current_user
+    @course.teacher = current_user
 
     if @course.save
       redirect_to course_path(@course)
     else
+      raise
       render :new
     end
   end

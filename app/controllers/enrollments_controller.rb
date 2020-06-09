@@ -6,7 +6,7 @@ class EnrollmentsController < ApplicationController
 
   def create
     @enrollment = Enrollment.new(enrollment_params)
-    @enrollment.student_id = current_user.id
+    @enrollment.student = current_user
     if @enrollment.save
       #need to redirect to study/course/show later
       redirect_to course_path(@enrollment.course)
