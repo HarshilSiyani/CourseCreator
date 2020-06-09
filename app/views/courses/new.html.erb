@@ -1,0 +1,9 @@
+<div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8 p-5 mb-5 mt-5 bg-white">
+  <h1>Create your new course</h1>
+  <%= simple_form_for(@course) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :category, :collection => ["Mathematics", "Physics", "Software Development", "Other"] %>
+    <%= f.submit 'Create Course', class: "btn btn-lg btn-primary"  %>
+  <% end %>
+</div>
