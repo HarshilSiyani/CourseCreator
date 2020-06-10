@@ -1,0 +1,53 @@
+
+[
+  {
+    "quizz_id": 1,
+    "text": "Quiz 1 - Introduction to Programming",
+    "questions": [
+      {
+        "_id": 1,
+        "text": "What is IRB?",
+        "answers": [
+          {
+            "correct": true,
+            "text": "It's a run time environemt for Ruby."
+          },
+          {
+            "correct": false,
+            "text": "Rails use this to host website."
+          },
+          {
+            "correct": false,
+            "text": "Not related to Ruby or Rails."
+          },
+          {
+            "correct": false,
+            "text": "I don't know!"
+          }
+        ]
+      },
+      {
+        "_id": 2,
+        "text": "What is OOP?",
+        "answers": [
+          {
+            "correct": true,
+            "text": "Object-Oriented Programming."
+          },
+          {
+            "correct": false,
+            "text": "Onward on Programming."
+          },
+          {
+            "correct": false,
+            "text": "Not related to Ruby or Rails."
+          },
+          {
+            "correct": false,
+            "text": "I don't know!"
+          }
+        ]
+      }
+    ]
+  }
+]

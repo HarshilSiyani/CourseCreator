@@ -1,0 +1,29 @@
+[
+  {
+    "text": "Introduction to Ruby"
+  },
+  {
+    "text": "Control Flow in Ruby"
+  },
+  {
+    "text": "Loops and Iterators"
+  },
+  {
+    "text": "Data Structures: Arrays and Hashes"
+  },
+  {
+    "text": "Methods, Blocks and Sorting"
+  },
+  {
+    "text": "Data Structures: Hashes and Symbols"
+  },
+  {
+    "text": "The Zen of Refactoring"
+  },
+  {
+    "text": "Object-Oriented Programming — Part I"
+  },
+  {
+    "text": "Object-Oriented Programming — Part II"
+  }
+]

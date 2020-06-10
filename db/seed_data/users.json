@@ -1,0 +1,44 @@
+[
+  {
+    "role": "teacher",
+    "first_name": "Erik",
+    "last_name": "Tran",
+    "password": "abc123",
+    "email": "erik@study.com"
+  },
+  {
+    "role": "teacher",
+    "first_name": "Harshil",
+    "last_name": "Siyani",
+    "password": "abc123",
+    "email": "harshil@study.com"
+  },
+  {
+    "role": "teacher",
+    "first_name": "Zachary",
+    "last_name": "Chung",
+    "password": "abc123",
+    "email": "zach@study.com"
+  },
+  {
+    "role": "student",
+    "first_name": "Lisa",
+    "last_name": "Huang",
+    "password": "abc123",
+    "email": "lisa@study.com"
+  },
+  {
+    "role": "student",
+    "first_name": "Sheila",
+    "last_name": "Leveille",
+    "password": "abc123",
+    "email": "sheila@study.com"
+  },
+  {
+    "role": "student",
+    "first_name": "Sy",
+    "last_name": "Rashid",
+    "password": "abc123",
+    "email": "sy@study.com"
+  }
+]

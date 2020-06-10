@@ -3,4 +3,5 @@ class Quiz < ApplicationRecord
   has_many :questions
   has_many :answers, through: :questions
   validates :study_module, presence: true
+  accepts_nested_attributes_for :study_module
 end
