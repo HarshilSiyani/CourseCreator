@@ -1,0 +1,8 @@
+<%# course_lessons POST   /courses/:course_id/lessons %>
+<%= simple_form_for [course, lesson] do |form| %>
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.rich_text_area :content %>
+    <%= form.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

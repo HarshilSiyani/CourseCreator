@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :courses, except: [:index, :destroy, :update] do
     resources :enrollments, only: :create
     resources :study_modules, only: [:new, :create]
+    resources :lessons, only: [:new, :create]
   end
 
   resources :users, only: :show do
@@ -18,5 +19,6 @@ Rails.application.routes.draw do
     resources :courses, only: :show
     resources :progresses, only: :create
   end
+
 
 end
