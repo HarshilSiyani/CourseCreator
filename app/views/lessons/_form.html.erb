@@ -1,0 +1,14 @@
+<%# course_lessons POST   /courses/:course_id/lessons %>
+<%= simple_form_for [course, contentable] do |form| %>
+<%#= raise %>
+  <%= form.simple_fields_for :study_module do |study_module_form| %>
+    <%= study_module_form.input :name %>
+  <% end %>
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.rich_text_area :content %>
+    <%= form.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+
