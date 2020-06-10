@@ -1,0 +1,36 @@
+<div class="d-flex">
+  <div id="course-sidebar" class="bg-light">
+    <h5 class="text-small"><%= @course.name %></h5>
+    <div id="topic-list" class="flex-grow-1">
+      <ul>
+        <li>Topic 1</li>
+        <li>Topic 2</li>
+        <li>Topic 3</li>
+        <li>Topic 4</li>
+        <li>Topic 5</li>
+      </ul>
+    </div>
+    <div id="settings">Settings</div>
+  </div>
+  <div class="modules bg-muted d-flex flex-column">
+    <div class="editor-menu">
+      <%= link_to  "Add Module", "#", class: "btn btn-primary" %> |
+      <%= link_to  "Publish", "#", class: "btn btn-primary" %>
+    </div>
+    <div id="editor" class="flex-grow-1">
+      <div id="editor-choices">
+        <%= link_to  "Create a lesson", "#", class: "btn btn-info" %>
+        <span>OR</span>
+        <%= link_to  "Create a quiz", "#", class: "btn btn-info" %>
+      </div>
+    </div>
+    <div class="course-description">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sodales pellentesque lorem, vel vestibulum dui dignissim eu. Etiam mauris enim, varius fringilla lorem at, vulputate viverra nunc. Mauris a erat venenatis, venenatis quam quis, blandit odio. Quisque vehicula magna blandit nibh tempus, vitae tempor mi commodo.</p>
+    </div>
+    <div class="module-nav d-flex justify-content-between">
+      <%= link_to  "Previous", '#', class: 'btn btn-lg btn-primary' %>
+      <%= link_to  "Next", '#', class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+
+</dixt
