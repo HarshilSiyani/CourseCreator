@@ -3,11 +3,14 @@
     <h5 class="text-small"><%= @course.name %></h5>
     <div id="topic-list" class="flex-grow-1">
       <ul>
-        <li>Topic 1</li>
-        <li>Topic 2</li>
-        <li>Topic 3</li>
-        <li>Topic 4</li>
-        <li>Topic 5</li>
+        <% @course.study_modules.each do |study_module| %>
+          <li><%= link_to study_module.name, edit_course_path(@course, study_module_id: study_module.id) %></li>
+        <% end %>
+        <li>
+          <%= link_to  "Create a lesson", new_course_lesson_path(@course), class: "btn btn-info" %>
+          <span>OR</span>
+          <%= link_to  "Create a quiz", "#", class: "btn btn-info" %>
+        </li>
       </ul>
     </div>
     <div id="settings">Settings</div>
@@ -19,13 +22,10 @@
     </div>
     <div id="editor" class="flex-grow-1">
       <div id="editor-choices">
-        <%= link_to  "Create a lesson", "#", class: "btn btn-info" %>
-        <span>OR</span>
-        <%= link_to  "Create a quiz", "#", class: "btn btn-info" %>
       </div>
     </div>
     <div class="course-description">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sodales pellentesque lorem, vel vestibulum dui dignissim eu. Etiam mauris enim, varius fringilla lorem at, vulputate viverra nunc. Mauris a erat venenatis, venenatis quam quis, blandit odio. Quisque vehicula magna blandit nibh tempus, vitae tempor mi commodo.</p>
+      <%= render "#{@contentable.class.table_name}/form", contentable: @contentable, course: @course %>
     </div>
     <div class="module-nav d-flex justify-content-between">
       <%= link_to  "Previous", '#', class: 'btn btn-lg btn-primary' %>

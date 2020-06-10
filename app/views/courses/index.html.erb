@@ -14,6 +14,7 @@
     <h5 class="card-title"><%= course.category %></h5>
     <p class="card-text"><%= course.description %></p>
   </div>
+  <%= link_to "Edit course", edit_course_path(course), class: "btn btn-primary" %>
 </div>
 <% end %>
 </div>
