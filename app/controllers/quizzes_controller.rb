@@ -38,7 +38,6 @@ class QuizzesController < ApplicationController
   end
 
   def quiz_params
-    # params.require(:lesson).permit(:content, study_module_attributes: {})
     params
       .require(:quiz)
       .permit(:text, study_module_attributes: StudyModule.attribute_names.map(&:to_sym).push(:_destroy))
@@ -48,7 +47,6 @@ class QuizzesController < ApplicationController
     params
       .require(:quiz)
       .permit(questions_attributes: Question.attribute_names.map(&:to_sym).push(:_destroy))
-      # .values[0]
   end
 
   def handle_questions(quiz)
@@ -70,33 +68,34 @@ class QuizzesController < ApplicationController
                   end
     return if createables.nil?
 
-    # raise
     quiz.questions.build(createables)
   end
 
-  def update_questions(quiz)
-    question_text = question_params["questions_attributes"]
-                    .values.reject { |question| question["_destroy"] == "1" }
-                    .map do |question|
-                      { text: question["text"] }
-                    end
-    
-    # raise
-    Question.update(quiz.question_ids, question_text)
+  def update_questions(_quiz)
+    updateables = question_params["questions_attributes"]
+                  .values.reject { |question| question["_destroy"] == "1" || question["id"].nil? }
+    updateable_text = updateables.map { |question| { text: question["text"] } }
+    updateable_ids = updateables.map { |question| question["id"].to_i }
+
+    current_questions = Question.where(id: updateable_ids).map(&:text)
+    # current_questions == updateables.map { |question| question["text"] }
+    # => TRUE if no changes, FALSE if there are changes
+    return if updateable_ids.nil? || current_questions == updateables.map { |question| question["text"] }
+
+    Question.update(updateable_ids, updateable_text)
   end
 
-  # questions = question_params["questions_attributes"].values
   # Question.find_or_initialize_by(question_params["questions_attributes"].values)
   def destroy_questions(quiz)
-    destroyable_ids = question_params["questions_attributes"]
-                      .values.select { |question| question["_destroy"] == "1" }
-                      .map { |question| question["id"].to_i }
-    
+    destroyables = question_params["questions_attributes"]
+                  .values.select { |question| question["_destroy"] == "1" }
+    destroyable_ids = destroyables.map { |question| question["id"].to_i }
+
     return if destroyable_ids.nil?
 
     destroyable_ids&.each do |id|
-      # Question.find(id).destroy
       quiz.questions.destroy(Question.find(id))
     end
   end
+
 end
