@@ -1,25 +1,26 @@
-<div class="d-flex">
-  <div id="course-sidebar" class="bg-light">
-    <h5 class="text-small"><%= @course.name %></h5>
+<div class="d-flex mt-5">
+  <div id="course-sidebar" class="bg-light mr-5">
+    <h4 class="text-small card p-2"><b><%= @course.name %></b></h4>
     <div id="topic-list" class="flex-grow-1">
       <ul>
         <% @course.study_modules.each do |study_module| %>
-          <li><%= link_to_unless_current study_module.name, edit_course_path(@course, study_module_id: study_module.id) %></li>
+          <li class = "card p-2 mr-2 mb-1"><%= link_to_unless_current study_module.name, edit_course_path(@course, study_module_id: study_module.id) %></li>
         <% end %>
-        <li>
-          <%= link_to  "Create a lesson", new_course_lesson_path(@course), class: "text-info" %>
-          <span>OR</span>
-          <%= link_to  "Create a quiz", new_course_quiz_path(@course), class: "text-info" %>
-        </li>
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              Add New Module
+            </a>
+          </p>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+              <%= link_to  "Create a lesson", new_course_lesson_path(@course), class: "text-info mb-2" %>
+              <%= link_to  "Create a quiz", new_course_quiz_path(@course), class: "text-info" %>
+            </div>
+          </div>
       </ul>
     </div>
-    <div id="settings">Settings</div>
   </div>
   <div class="modules bg-muted d-flex flex-column">
-    <div class="editor-menu">
-      <%= link_to  "Add Module", "#", class: "btn btn-primary" %> |
-      <%= link_to  "Publish", "#", class: "btn btn-primary" %>
-    </div>
     <div id="editor" class="flex-grow-1">
       <%= render "#{@contentable.class.table_name}/form", contentable: @contentable, course: @course %>
     </div>

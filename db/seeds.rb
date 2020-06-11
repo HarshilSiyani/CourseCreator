@@ -76,23 +76,23 @@ lessons.each_with_index do |lesson, index|
   record.save!
 end
 
-quizzes.each_with_index do |quiz, index|
-  record = Quiz.new(text: quiz["text"])
-  record.study_module = StudyModule.new(
-    course: course_ruby,
-    index: course_ruby.study_modules.last.index + 1,
-    name: quiz["text"]
-  )
-  record.save!
+# quizzes.each_with_index do |quiz, index|
+#   record = Quiz.new(text: quiz["text"])
+#   record.study_module = StudyModule.new(
+#     course: course_ruby,
+#     index: course_ruby.study_modules.last.index + 1,
+#     name: quiz["text"]
+#   )
+#   record.save!
 
-  quiz["questions"].each do |question_data|
-    question = Question.new(text: question_data["text"], quiz: record)
-    question.save!
+#   quiz["questions"].each do |question_data|
+#     question = Question.new(text: question_data["text"], quiz: record)
+#     question.save!
 
-    question.answers = Answer.create(question_data["answers"])
-    question.save!
-  end
-end
+#     question.answers = Answer.create(question_data["answers"])
+#     question.save!
+#   end
+# end
 puts "...finished seeding Study Modules"
 
 puts "<--- --- Finished seeding!"
