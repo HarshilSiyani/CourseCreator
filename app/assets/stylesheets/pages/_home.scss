@@ -9,4 +9,18 @@
   background-color: white;
   width: 60vw;
   min-height: 50vh;
+  padding: 30px;
+}
+
+.desc{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.name-desc {
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
 }
