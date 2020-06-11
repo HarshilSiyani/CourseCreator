@@ -91,7 +91,7 @@ quizzes.each_with_index do |quiz, index|
     question = Question.new(text: question_data["text"], quiz: record)
     question.save!
 
-    question.answers = Answer.create(question_data["answers"])
+    question.answers.build(question_data["answers"])
     question.save!
   end
 end
