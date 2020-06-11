@@ -2,7 +2,7 @@
 <div class="d-flex mt-3">
   <div id="course-sidebar" class="bg-white mr-5">
     <div id="topic-list" class="flex-grow-1 mt-2 mr-1">
-      <h5>Contents</h5>
+      <h5 class = "m-2">Contents</h5>
       <ul>
         <% count = 1 %>
         <% @course.study_modules.each do |study_module| %>
@@ -18,7 +18,6 @@
   </div>
   <div class="modules bg-muted d-flex flex-column">
     <div class="editor-menu">
-      <%= link_to  "Add Module", "#", class: "btn btn-primary" %> |
       <%= link_to  "Publish", publish_course_path(@course, study_module_id: @course.study_modules.first), class: "btn btn-primary" %>
     </div>
     <div id="editor" class="flex-grow-1">
