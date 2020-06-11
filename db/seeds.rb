@@ -39,8 +39,18 @@ JSON.parse(course_file).each do |record|
     published: record["published"],
     teacher: teachers.sample
   })
-
+  
+  
   if course.save!
+    name = "Welcome to the first lesson of #{course.name}!"
+    lesson = Lesson.new(text: name)
+    lesson.study_module = StudyModule.new(
+      course: course,
+      index: 1,
+      name: name,
+    )
+    lesson.save!
+    
     courses << course
   end
 end
