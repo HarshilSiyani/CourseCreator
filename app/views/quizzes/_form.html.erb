@@ -1,7 +1,7 @@
 <%= simple_form_for(@todo_list) do |form| %>
   <%= form.error_notification %>
 
-  <h1>Questions</h1>
+  
   <div data-controller="nested-form">
     <template data-target='nested-form.template'>
       <%= form.fields_for :questions, Question.new, child_index: 'TEMPLATE_RECORD' do |question| %>
