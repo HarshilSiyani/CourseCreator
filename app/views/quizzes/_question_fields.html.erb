@@ -1,9 +1,28 @@
-<div class='nested-fields'>
-  <div class='form-group'>
+<div class='nested-fields nested-parent my-3 bg-white'>
+  <!-- QUESTION -->
+  <div class='form-group question-item'>
     <%= form.hidden_field :_destroy %>
-    <%= form.text_field :description, placeholder: 'Question Text', class: 'form-control' %>
+    <%= form.text_field :text, placeholder: 'Question Text', class: 'form-control' %>
     <small>
-      <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" } %>
+      <%= link_to "- question", "#", class: "text-warning",
+          data: { action: "click->nested-form#remove_association" } %>
     </small>
+  </div>
+
+  <!-- ANSWER LISTS -->
+  <div class="answers-group" data-controller="nested-form">
+    <template data-target='nested-form.template'>
+      <%= form.simple_fields_for :answers, Answer.new, child_index: 'TEMPLATE_RECORD' do |answer| %>
+        <%= render "#{contentable.class.table_name}/answer_fields", subform: answer %>
+      <% end %>
+    </template>
+
+    <%= form.simple_fields_for :answers do |answer| %>
+      <%= render "#{contentable.class.table_name}/answer_fields", subform: answer %>
+    <% end %>
+
+    <div data-target="nested-form.add_item" class="text-right">
+      <%= link_to "+ Choice", "#", data: { action: "nested-form#add_association" }, class: "small" %>
+    </div>
   </div>
 </div>

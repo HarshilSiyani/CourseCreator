@@ -1,5 +1,5 @@
 class QuizzesController < ApplicationController
-  before_action :set_course, only: [ :new, :create, :update, :show ]
+  before_action :set_course, only: [:new, :create, :update, :show]
 
   def new
     @quiz = Quiz.new
@@ -38,15 +38,17 @@ class QuizzesController < ApplicationController
   end
 
   def quiz_params
-    params
-      .require(:quiz)
-      .permit(:text, study_module_attributes: StudyModule.attribute_names.map(&:to_sym))
+    params.require(:quiz).permit(
+      :text,
+      study_module_attributes: StudyModule.attribute_names.map(&:to_sym)
+    )
   end
 
   def question_params
-    tmp_params = params
-                 .require(:quiz)
-                 .permit(questions_attributes: Question.attribute_names.map(&:to_sym).push(:_destroy))
+    tmp_params = params.require(:quiz).permit(
+      questions_attributes: Question.attribute_names.map(&:to_sym).push(:_destroy)
+      .push(answers_attributes: Answer.attribute_names.map(&:to_sym).push(:_destroy))
+    )
 
     params.permit(:id).merge!(tmp_params)
   end
@@ -57,7 +59,8 @@ class QuizzesController < ApplicationController
       .permit(
         :text,
         study_module_attributes: StudyModule.attribute_names.map(&:to_sym),
-        questions_attributes: Question.attribute_names.map(&:to_sym)
+        questions_attributes: Question.attribute_names.map(&:to_sym),
+        answers_attributes: Answer.attribute_names.map(&:to_sym)
       )
   end
 
