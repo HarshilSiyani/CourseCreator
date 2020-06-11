@@ -26,6 +26,7 @@ class CoursesController < ApplicationController
   end
 
   def edit
+    # raise
     @contentable = @course.study_modules.find(params[:study_module_id]).contentable
   end
 
