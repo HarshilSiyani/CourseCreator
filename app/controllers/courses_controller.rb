@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
-  before_action :set_course, only: [ :edit, :update ]
+  before_action :set_course, only: [:edit, :update, :publish]
 
   def new
     @course = Course.new
@@ -26,6 +26,11 @@ class CoursesController < ApplicationController
   end
 
   def edit
+    # raise
+    @contentable = @course.study_modules.find(params[:study_module_id]).contentable
+  end
+
+  def publish
     @contentable = @course.study_modules.find(params[:study_module_id]).contentable
   end
 

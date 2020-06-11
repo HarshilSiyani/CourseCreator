@@ -1,1 +1,26 @@
-// Specific CSS for your home-page
+.banner{
+  height: 100vh;
+  width: 95vw;
+  position: relative;
+  margin: auto;
+}// Specific CSS for your home-page
+
+.editor{
+  background-color: white;
+  width: 60vw;
+  min-height: 50vh;
+  padding: 30px;
+}
+
+.desc{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.name-desc {
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+}
