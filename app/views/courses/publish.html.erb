@@ -1,0 +1,22 @@
+<div class="d-flex">
+  <div id="course-sidebar" class="bg-light">
+    <h5 class="text-small"><%= @course.name %></h5>
+    <div id="topic-list" class="flex-grow-1">
+      <ul>
+        <% @course.study_modules.each do |study_module| %>
+          <li><%= link_to_unless_current study_module.name, publish_course_path(@course, study_module_id: study_module.id) %></li>
+        <% end %>
+      </ul>
+    </div>
+    <%= link_to "Your courses", user_courses_path(current_user), class: "btn btn-info w-100" %>
+    <!-- <div id="settings">Settings</div> -->
+  </div>
+  <div class="modules bg-muted d-flex flex-column">
+    <div id="editor" class="flex-grow-1">
+      <%= render "#{@contentable.class.table_name}/preview_form", contentable: @contentable %>
+    </div>
+    <div class="course-description">
+    </div>
+  </div>
+</div>
+

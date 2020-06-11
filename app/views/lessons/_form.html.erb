@@ -10,7 +10,11 @@
     <%= form.rich_text_area :content %>
     <%# GET    /courses/:course_id/lessons/:id(.:format) %>
     <%#= link_to "Preview", course_lesson_path(course, contentable), class: "btn btn-info" %>
-    <%= form.button :submit, class: "btn btn-primary" %>
+    <div class="d-flex justify-content-between">
+      <%= form.submit "Update", class: "btn btn-info" %>
+      <%= form.submit "Preview", class: "btn btn-info" %>
+
+    </div>
     <%#= link_to "Preview", course_lesson_path(course, contentable, my_action: "Preview"), method: :patch, class: "btn btn-info" %>
     <%#= link_to course_lesson_path(course, contentable) do %>
       <%#= form.submit "Preview", my_action: "Preview", class: "btn btn-info" %>
@@ -18,4 +22,4 @@
   </div>
 <% end %>
 
-<%= javascript_pack_tag 'trix_youtube_plugins' %>
+<%#= javascript_pack_tag 'trix_youtube_plugins' %>
