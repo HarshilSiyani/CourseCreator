@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :enrollments, only: :create
     resources :study_modules, only: [:new, :create]
     resources :lessons, only: [:new, :create, :show, :edit, :update]
+    resources :quizzes, only: [:new, :create, :show, :edit, :update]
   end
 
   resources :users, only: :show do

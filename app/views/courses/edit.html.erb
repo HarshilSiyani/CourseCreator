@@ -4,12 +4,12 @@
     <div id="topic-list" class="flex-grow-1">
       <ul>
         <% @course.study_modules.each do |study_module| %>
-          <li><%= link_to study_module.name, edit_course_path(@course, study_module_id: study_module.id) %></li>
+          <li><%= link_to_unless_current study_module.name, edit_course_path(@course, study_module_id: study_module.id) %></li>
         <% end %>
         <li>
-          <%= link_to  "Create a lesson", new_course_lesson_path(@course), class: "btn btn-info" %>
+          <%= link_to  "Create a lesson", new_course_lesson_path(@course), class: "text-info" %>
           <span>OR</span>
-          <%= link_to  "Create a quiz", "#", class: "btn btn-info" %>
+          <%= link_to  "Create a quiz", new_course_quiz_path(@course), class: "text-info" %>
         </li>
       </ul>
     </div>
@@ -21,16 +21,9 @@
       <%= link_to  "Publish", "#", class: "btn btn-primary" %>
     </div>
     <div id="editor" class="flex-grow-1">
-      <div id="editor-choices">
-      </div>
-    </div>
-    <div class="course-description">
       <%= render "#{@contentable.class.table_name}/form", contentable: @contentable, course: @course %>
     </div>
-    <div class="module-nav d-flex justify-content-between">
-      <%= link_to  "Previous", '#', class: 'btn btn-lg btn-primary' %>
-      <%= link_to  "Next", '#', class: 'btn btn-lg btn-primary' %>
+    <div class="course-description">
     </div>
   </div>
-
-</dixt
+</div>

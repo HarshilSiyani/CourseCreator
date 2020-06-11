@@ -11,6 +11,7 @@ class LessonsController < ApplicationController
     # course_lessons POST   /courses/:course_id/lessons
     @course = Course.find(params[:course_id])
     @lesson = Lesson.new(lesson_params)
+    # raise
     @lesson.study_module.course = @course
     if @lesson.save
       # course_lesson GET    /courses/:course_id/lessons/:id
