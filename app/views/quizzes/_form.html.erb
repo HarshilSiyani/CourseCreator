@@ -1,37 +1,20 @@
-<%= simple_form_for [course, contentable] do |form| %>
+<%= simple_form_for(@todo_list) do |form| %>
   <%= form.error_notification %>
-  <!-- study_module.name -->
-  <%= form.simple_fields_for :study_module do |study_module_form| %>
-    <%= study_module_form.input :name, label: "Quiz name" %>
-  <% end %>
 
-  <!-- quiz.text -->
-  <%= form.input :text, label: "Quiz description" %>
-  <table class='table'>
-    <thead>
-      <tr>
-        <th></th>
-        <th class="text-muted">Form Actions</th>
-        <th>Questions</th>
-      </tr>
-    </thead>
-    <tbody class='questions'>
-      <%= form.simple_fields_for :questions do |builder| %>
-        <%= render "#{contentable.class.table_name}/question_field", f: builder %>
-        
-        <%= builder.simple_fields_for :answers do |worker| %>
-          <%= render "#{contentable.class.table_name}/answer_field", f: worker %>
-        <% end %>
+  <h1>Questions</h1>
+  <div data-controller="nested-form">
+    <template data-target='nested-form.template'>
+      <%= form.fields_for :questions, Question.new, child_index: 'TEMPLATE_RECORD' do |question| %>
+        <%= render 'question_fields', form: question %>
       <% end %>
-    </tbody>
-  </table>
+    </template>
 
-  <div class="form-actions">
-    <%= form.button :submit %>
-    <%= link_to_add_association 'Add Question', form, :questions, class: 'btn btn-primary', 
-          partial: "#{contentable.class.table_name}/question_field",
-          data: { association_insertion_node: '.questions', association_insertion_method: :append } 
-    %>
+    <%= form.fields_for :questions do |question| %>
+      <%= render 'question_fields', form: question %>
+    <% end %>
+
+    <div data-target="nested-form.add_item">
+      <%= link_to "Add Question", "#", data: { action: "nested-form#add_association" } %>
+    </div>
   </div>
-
 <% end %>

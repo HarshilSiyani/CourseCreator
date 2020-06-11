@@ -26,6 +26,14 @@ require("@rails/actiontext")
 // External imports
 import "bootstrap";
 import "cocoon-js";
+// BEGIN - StimulusJS for nested form
+import { Application } from "stimulus"
+import { definitionsFromContext } from "stimulus/webpack-helpers"
+
+const application = Application.start()
+const context = require.context("../controllers", true, /\.js$/)
+application.load(definitionsFromContext(context))
+// END - StimulusJS for nested form
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
