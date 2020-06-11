@@ -6,11 +6,10 @@
         <% @course.study_modules.each do |study_module| %>
           <li class = "card p-2 mr-2 mb-1"><%= link_to_unless_current study_module.name, edit_course_path(@course, study_module_id: study_module.id) %></li>
         <% end %>
-        <li>
-          <%= link_to  "+ lesson", new_course_lesson_path(@course), class: "text-info" %>
-          <span>OR</span>
-          <%= link_to  "+ quiz", new_course_quiz_path(@course), class: "text-info" %>
-        </li>
+        <div class ="d-flex justify-content-start">
+          <%= link_to  "+ Lesson", new_course_lesson_path(@course), class: "btn btn-primary mr-2", style: "width: 100px;" %>
+          <%= link_to  "+ Quiz", new_course_quiz_path(@course), class: "btn btn-primary", style: "width: 100px;" %>
+        </div>
       </ul>
     </div>
     <div id="settings">Settings</div>
