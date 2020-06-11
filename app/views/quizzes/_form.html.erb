@@ -16,7 +16,7 @@
     </thead>
     <tbody class='questions'>
       <%= form.simple_fields_for :questions do |builder| %>
-        <%= render "#{contentable.class.table_name}/question_fields", f: builder %>
+        <%= render "#{contentable.class.table_name}/question_field", qf: builder %>
       <% end %>
     </tbody>
   </table>
@@ -24,7 +24,7 @@
   <div class="form-actions">
     <%= form.button :submit %>
     <%= link_to_add_association 'Add Question', form, :questions, class: 'btn btn-primary', 
-          partial: "#{contentable.class.table_name}/question_fields",
+          partial: "#{contentable.class.table_name}/question_field",
           data: { association_insertion_node: '.questions', association_insertion_method: :append } 
     %>
   </div>
