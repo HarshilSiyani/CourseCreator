@@ -6,19 +6,14 @@
         <% @course.study_modules.each do |study_module| %>
           <li class = "card p-2 mr-2 mb-1"><%= link_to_unless_current study_module.name, edit_course_path(@course, study_module_id: study_module.id) %></li>
         <% end %>
-          <p>
-            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-              Add New Module
-            </a>
-          </p>
-          <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-              <%= link_to  "Create a lesson", new_course_lesson_path(@course), class: "text-info mb-2" %>
-              <%= link_to  "Create a quiz", new_course_quiz_path(@course), class: "text-info" %>
-            </div>
-          </div>
+        <li>
+          <%= link_to  "+ lesson", new_course_lesson_path(@course), class: "text-info" %>
+          <span>OR</span>
+          <%= link_to  "+ quiz", new_course_quiz_path(@course), class: "text-info" %>
+        </li>
       </ul>
     </div>
+    <div id="settings">Settings</div>
   </div>
   <div class="modules bg-muted d-flex flex-column">
     <div id="editor" class="flex-grow-1">

@@ -86,6 +86,11 @@ quizzes.each_with_index do |quiz, index|
     name: quiz["text"]
   )
   record.save!
+
+  quiz["questions"].each do |question_data|
+    question = Question.new(text: question_data["text"], quiz: record)
+    question.save!
+
     question.answers.build(question_data["answers"])
     question.save!
   end
