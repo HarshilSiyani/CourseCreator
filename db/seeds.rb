@@ -62,6 +62,7 @@ puts "...finished seeding Enrollments"
 
 
 puts "Seeding Study Modules..."
+puts "Sowing Lessons..."
 lessons = JSON.parse(File.open('db/seed_data/lessons.json').read)
 quizzes = JSON.parse(File.open('db/seed_data/quizzes.json').read)
 course_ruby = Course.find_by(name: "Learn Ruby Basics")
@@ -76,6 +77,7 @@ lessons.each_with_index do |lesson, index|
   record.save!
 end
 
+puts "Sowing Quizzes..."
 quizzes.each_with_index do |quiz, index|
   record = Quiz.new(text: quiz["text"])
   record.study_module = StudyModule.new(
