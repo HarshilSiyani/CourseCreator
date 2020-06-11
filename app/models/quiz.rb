@@ -1,7 +1,13 @@
 class Quiz < ApplicationRecord
   has_one :study_module, as: :contentable
-  has_many :questions
+  has_many :questions, dependent: :destroy
   has_many :answers, through: :questions
-  validates :study_module, presence: true
+
   accepts_nested_attributes_for :study_module
+  accepts_nested_attributes_for :questions,
+                                allow_destroy: true,
+                                reject_if: proc { |att| att['text'].blank? }
+
+  validates :study_module, presence: true
+  validates :text, presence: true
 end

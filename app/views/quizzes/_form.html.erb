@@ -1,0 +1,31 @@
+<%= simple_form_for [course, contentable] do |form| %>
+  <%= form.error_notification %>
+  <!--  -->
+  <%= form.simple_fields_for :study_module do |study_module_form| %>
+    <%= study_module_form.input :name, label: "Quiz name" %>
+  <% end %>
+
+  <%= form.input :text, label: "Quiz description" %>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Questions</th>
+      </tr>
+    </thead>
+    <tbody class='questions'>
+      <%= form.simple_fields_for :questions do |builder| %>
+        <%= render "#{contentable.class.table_name}/question_fields", f: builder %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="form-actions">
+    <%= form.button :submit %>
+    <%= link_to_add_association 'Add Question', form, :questions, class: 'btn btn-primary', 
+          partial: "#{contentable.class.table_name}/question_fields",
+          data: { association_insertion_node: '.questions', association_insertion_method: :append } 
+    %>
+  </div>
+
+<% end %>
