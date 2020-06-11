@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :study_modules, only: [:new, :create]
     resources :lessons, only: [:new, :create, :show, :edit, :update]
     resources :quizzes, only: [:new, :create, :show, :edit, :update]
+    get :publish, on: :member
   end
 
   resources :users, only: :show do

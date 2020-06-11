@@ -18,7 +18,7 @@
   <div class="modules bg-muted d-flex flex-column">
     <div class="editor-menu">
       <%= link_to  "Add Module", "#", class: "btn btn-primary" %> |
-      <%= link_to  "Publish", "#", class: "btn btn-primary" %>
+      <%= link_to  "Publish", publish_course_path(@course, study_module_id: @course.study_modules.first), class: "btn btn-primary" %>
     </div>
     <div id="editor" class="flex-grow-1">
       <%= render "#{@contentable.class.table_name}/form", contentable: @contentable, course: @course %>
