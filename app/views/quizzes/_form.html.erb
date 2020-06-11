@@ -1,16 +1,22 @@
 <%= simple_form_for(@todo_list) do |form| %>
   <%= form.error_notification %>
+  <!-- study_module.name -->
+  <%= form.simple_fields_for :study_module do |study_module_form| %>
+    <%= study_module_form.input :name, label: "Quiz name" %>
+  <% end %>
 
+  <!-- quiz.text -->
+  <%= form.input :text, label: "Quiz description" %>
   
   <div data-controller="nested-form">
     <template data-target='nested-form.template'>
-      <%= form.fields_for :questions, Question.new, child_index: 'TEMPLATE_RECORD' do |question| %>
-        <%= render 'question_fields', form: question %>
+      <%= form.simple_fields_for :questions, Question.new, child_index: 'TEMPLATE_RECORD' do |question| %>
+        <%= render "#{contentable.class.table_name}/question_fields", form: question %>
       <% end %>
     </template>
 
-    <%= form.fields_for :questions do |question| %>
-      <%= render 'question_fields', form: question %>
+    <%= form.simple_fields_for :questions do |question| %>
+      <%= render "#{contentable.class.table_name}/question_fields", form: question %>
     <% end %>
 
     <div data-target="nested-form.add_item">
