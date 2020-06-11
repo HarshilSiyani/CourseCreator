@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "name": "Basics of Programming",
+    "category": "Information Technology",
+    "published": false,
+    "description": [""]
+  },
+  {
+    "id": 2,
+    "name": "Learn Ruby Basics",
+    "category": "Information Technology",
+    "published": false,
+    "description": [
+      "Ruby is a general-purpose language that is still popular and in high demand in the marketplace, as it’s more commonly used in Rails applications.",
+      "Concise and readable, it is easy to pick up but also plenty powerful. Companies like Twitter, Soundcloud, Goodreads, and Kickstarter got their products off the ground with Ruby.",
+      "In this course, you will gain familiarity with Ruby and basic programming concepts—including variables, loops, control flow, and most importantly, object-oriented programming. You’ll get a chance to test your understanding in a final project, which you’ll build locally."
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Learn HTML and CSS Basics",
+    "category": "Information Technology",
+    "published": false,
+    "description": [""]
+  },
+  {
+    "id": 4,
+    "name": "Learn JavaScript",
+    "category": "Information Technology",
+    "published": false,
+    "description": [""]
+  },
+  {
+    "id": 5,
+    "name": "Learn Git Basics",
+    "category": "Information Technology",
+    "published": false,
+    "description": [""]
+  }
+]
