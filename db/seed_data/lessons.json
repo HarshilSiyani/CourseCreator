@@ -1,29 +1,38 @@
 [
   {
-    "text": "Introduction to Ruby"
+    "text": "Introduction to Ruby",
+    "content": "There should be something inside here. It cannot be blank"
   },
   {
-    "text": "Control Flow in Ruby"
+    "text": "Control Flow in Ruby",
+    "content": "There should be something inside here. It cannot be blank"
   },
   {
-    "text": "Loops and Iterators"
+    "text": "Loops and Iterators",
+    "content": "There should be something inside here. It cannot be blank"
   },
   {
-    "text": "Data Structures: Arrays and Hashes"
+    "text": "Data Structures: Arrays and Hashes",
+    "content": "There should be something inside here. It cannot be blank"
   },
   {
-    "text": "Methods, Blocks and Sorting"
+    "text": "Methods, Blocks and Sorting",
+    "content": "There should be something inside here. It cannot be blank"
   },
   {
-    "text": "Data Structures: Hashes and Symbols"
+    "text": "Data Structures: Hashes and Symbols",
+    "content": "There should be something inside here. It cannot be blank"
   },
   {
-    "text": "The Zen of Refactoring"
+    "text": "The Zen of Refactoring",
+    "content": "There should be something inside here. It cannot be blank"
   },
   {
-    "text": "Object-Oriented Programming — Part I"
+    "text": "Object-Oriented Programming — Part I",
+    "content": "There should be something inside here. It cannot be blank"
   },
   {
-    "text": "Object-Oriented Programming — Part II"
+    "text": "Object-Oriented Programming — Part II",
+    "content": "There should be something inside here. It cannot be blank"
   }
 ]

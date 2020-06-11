@@ -4,4 +4,6 @@ class Lesson < ApplicationRecord
   validates :study_module, presence: true
 
   accepts_nested_attributes_for :study_module
+
+  validates :content, presence: true
 end

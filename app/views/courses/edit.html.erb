@@ -1,19 +1,20 @@
-<div class="d-flex">
-  <div id="course-sidebar" class="bg-light">
-    <h5 class="text-small"><%= @course.name %></h5>
-    <div id="topic-list" class="flex-grow-1">
+    <h4 class="text-small m-2 p-2"><b><%= @course.name %></b></h4>
+<div class="d-flex mt-3">
+  <div id="course-sidebar" class="bg-white mr-5">
+    <div id="topic-list" class="flex-grow-1 mt-2 mr-1">
+      <h5>Contents</h5>
       <ul>
+        <% count = 1 %>
         <% @course.study_modules.each do |study_module| %>
-          <li><%= link_to_unless_current study_module.name, edit_course_path(@course, study_module_id: study_module.id) %></li>
+          <li class = "card p-2 mb-2"><%= count %>. <%=link_to_unless_current study_module.name, edit_course_path(@course, study_module_id: study_module.id) %></li>
+          <% count += 1 %>
         <% end %>
-        <li>
-          <%= link_to  "Create a lesson", new_course_lesson_path(@course), class: "text-info" %>
-          <span>OR</span>
-          <%= link_to  "Create a quiz", new_course_quiz_path(@course), class: "text-info" %>
-        </li>
+        <div class ="d-flex justify-content-start">
+          <%= link_to  "+ Lesson", new_course_lesson_path(@course), class: "btn btn-primary mr-2", style: "width: 100px;" %>
+          <%= link_to  "+ Quiz", new_course_quiz_path(@course), class: "btn btn-primary", style: "width: 100px;" %>
+        </div>
       </ul>
     </div>
-    <div id="settings">Settings</div>
   </div>
   <div class="modules bg-muted d-flex flex-column">
     <div class="editor-menu">
