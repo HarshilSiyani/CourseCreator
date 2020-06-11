@@ -18,12 +18,12 @@ class QuizzesController < ApplicationController
   end
 
   def update
+    raise
     @quiz = Quiz.find(params[:id])
     @quiz.update quiz_params
     @quiz.update question_params
 
     # handle_questions(@quiz) # OLD CODE
-
     redirect_to edit_course_path(@course, study_module_id: @quiz.study_module.id)
   end
 

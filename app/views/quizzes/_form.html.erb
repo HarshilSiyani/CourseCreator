@@ -11,12 +11,17 @@
     <thead>
       <tr>
         <th></th>
+        <th class="text-muted">Form Actions</th>
         <th>Questions</th>
       </tr>
     </thead>
     <tbody class='questions'>
       <%= form.simple_fields_for :questions do |builder| %>
-        <%= render "#{contentable.class.table_name}/question_field", qf: builder %>
+        <%= render "#{contentable.class.table_name}/question_field", f: builder %>
+        
+        <%= builder.simple_fields_for :answers do |worker| %>
+          <%= render "#{contentable.class.table_name}/answer_field", f: worker %>
+        <% end %>
       <% end %>
     </tbody>
   </table>
