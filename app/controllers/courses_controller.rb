@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
-  before_action :set_course, only: [:edit, :update]
+  before_action :set_course, only: [ :edit, :update ]
 
   def new
     @course = Course.new

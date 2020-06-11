@@ -1,12 +1,12 @@
 class QuizzesController < ApplicationController
+  before_action :set_course, only: [ :new, :create, :update, :show ]
+
   def new
-    @course = Course.find(params[:course_id])
     @quiz = Quiz.new
     @quiz.study_module = StudyModule.new
   end
 
   def create
-    @course = Course.find(params[:course_id])
     @quiz = Quiz.new(quiz_params)
     @quiz.study_module.course = @course
 
@@ -20,7 +20,6 @@ class QuizzesController < ApplicationController
   end
 
   def update
-    @course = Course.find(params[:course_id])
     @quiz = Quiz.find(params[:id])
 
     handle_questions(@quiz)
@@ -28,7 +27,15 @@ class QuizzesController < ApplicationController
     redirect_to edit_course_path(@course, study_module_id: @quiz.study_module.id)
   end
 
+  def show
+    @quiz = Quiz.includes(:questions, :answers, :study_module).find(params[:id])
+  end
+
   private
+
+  def set_course
+    @course = Course.find(params[:course_id])
+  end
 
   def quiz_params
     # params.require(:lesson).permit(:content, study_module_attributes: {})
