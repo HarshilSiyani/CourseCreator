@@ -8,8 +8,11 @@
 .editor{
   background-color: white;
   width: 60vw;
-  min-height: 50vh;
+  height: 50vh;
   padding: 30px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align:justify;
 }
 
 .desc{
@@ -20,7 +23,19 @@
 }
 
 .name-desc {
-     white-space: nowrap;
-     overflow: hidden;
-     text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
+.preview{
+  background-color: white;
+  width: 70vw;
+  height: 70vh;
+  padding: 30px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align:justify;
+
+}
+
