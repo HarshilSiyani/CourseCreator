@@ -3,12 +3,19 @@
   <%#= raise %>
   <%= form.simple_fields_for :study_module do |study_module_form| %>
     <%= study_module_form.input :name %>
-  <% end %> <%# new studymodule to the lesson - need nested form %>
+  <% end %>
 
   <div class="field"> <%# for Action Text %>
     <%= form.label :content %>
     <%= form.rich_text_area :content %>
+    <%# GET    /courses/:course_id/lessons/:id(.:format) %>
+    <%#= link_to "Preview", course_lesson_path(course, contentable), class: "btn btn-info" %>
     <%= form.button :submit, class: "btn btn-primary" %>
+    <%#= link_to "Preview", course_lesson_path(course, contentable, my_action: "Preview"), method: :patch, class: "btn btn-info" %>
+    <%#= link_to course_lesson_path(course, contentable) do %>
+      <%#= form.submit "Preview", my_action: "Preview", class: "btn btn-info" %>
+    <%# end %>
   </div>
 <% end %>
 
+<%= javascript_pack_tag 'trix_youtube_plugins' %>
