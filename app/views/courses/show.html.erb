@@ -7,6 +7,6 @@
     <%= link_to "Enroll",  course_enrollments_path(@course), method: :post %>
   <% else %>
     <div><%= link_to "Students", course_path(@course), class: "text-info" %></div>
-    <div><%= link_to "Contents", edit_course_path(@course), class: "text-info" %></div>
+    <div><%= link_to "Contents", edit_course_path(@course, study_module_id: @course.study_modules.first.id), class: "text-info" %></div>
   <% end %>
 </div>

@@ -9,6 +9,12 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
     @course.teacher = current_user
+    @course.published = false
+
+    lesson = default_lesson(@course)
+
+    @course.study_modules << lesson.study_module
+    # raise
 
     if @course.save
       redirect_to course_path(@course)
@@ -42,5 +48,18 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(:category, :name, :description)
+  end
+
+  def default_lesson(course)
+    lesson = Lesson.new(
+      text: "Welcome",
+      study_module_attributes: {
+        index: 1,
+        course: course,
+        name: "Welcome to #{course.name}"
+      }
+    )
+    lesson.content.body = "Welcome to #{course.name}!"
+    return lesson
   end
 end
