@@ -27,11 +27,16 @@ class CoursesController < ApplicationController
 
   def edit
     # raise
+
     @contentable = @course.study_modules.find(params[:study_module_id]).contentable
   end
 
   def publish
     @contentable = @course.study_modules.find(params[:study_module_id]).contentable
+  end
+
+  def original_url
+    base_url + original_fullpath
   end
 
   private

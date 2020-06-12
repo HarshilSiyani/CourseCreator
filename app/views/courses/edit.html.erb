@@ -6,7 +6,7 @@
       <ul>
         <% count = 1 %>
         <% @course.study_modules.each do |study_module| %>
-          <li class = "card p-2 mb-2"><%= count %>. <%=link_to_unless_current study_module.name, edit_course_path(@course, study_module_id: study_module.id) %></li>
+          <li class = "mb-2"><%= count %>. <%=link_to_unless_current study_module.name, edit_course_path(@course, study_module_id: study_module.id) %></li>
           <% count += 1 %>
         <% end %>
         <div class ="d-flex justify-content-start">
