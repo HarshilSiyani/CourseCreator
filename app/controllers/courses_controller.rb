@@ -32,8 +32,21 @@ class CoursesController < ApplicationController
   end
 
   def publish
-    raise
-    @contentable = @course.study_modules.find(params[:study_module_id]).contentable
+    # @enrolled_ids = current_user.enrollment_ids
+    # # @enrolled_ids.each do |enrolled|
+    #   if (@enrolled_ids.course_id == @course_id)
+    #     @contentable = @course.study_modules.find(params[:study_module_id]).contentable
+    #   else
+    #     redirect_to user_enrollments_path(current_user.id)
+    #   end
+    # end
+    @course = Course.find(params[:id])
+    if current_user == @course.teacher
+        redirect_to publish_course_path(@course_id)
+      else
+        redirect_to course_path(@course_id)
+      end
+
   end
 
   def original_url
