@@ -1,15 +1,24 @@
-<h1><%= @quiz.study_module.name %></h1>
-
+<h1><%= @quiz.study_module.course.name %></h1>
+<h2><%= @quiz.study_module.name %></h2>
 <p class="text-bold"><%= @quiz.text %></p>
+
 <ol>
 <% @quiz.questions.each do |question| %>
   <li><%= question.text %></li>
   <% if question.answers %>
-    <ul>
+    <ul class="fa-ul">
     <% question.answers.each do |answer| %>
-      <li class="choices"><%= answer.text %></li>
+      <li>
+        <% if answer.correct %>
+          <i class="fa-li fa fa-check-square"></i>
+        <% else %>
+          <i class="fa-li fa fa-square"></i>
+        <% end %>
+        <%= answer.text %>
+      </li>
     <% end %>
     </ul>
   <% end %>
 <% end %>
 </ol>
+<%= link_to "< Back", :back, class: "mt-3 btn btn-info" %>
