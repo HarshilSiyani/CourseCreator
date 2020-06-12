@@ -1,0 +1,21 @@
+<div class="card preview">
+<ol>
+<% contentable.questions.each do |question| %>
+  <li><%= question.text %></li>
+  <% if question.answers %>
+    <ul class="fa-ul">
+    <% question.answers.each do |answer| %>
+      <li>
+        <% if answer.correct %>
+          <i class="fa-li fa fa-check-square"></i>
+        <% else %>
+          <i class="fa-li fa fa-square"></i>
+        <% end %>
+        <%= answer.text %>
+      </li>
+    <% end %>
+    </ul>
+  <% end %>
+<% end %>
+</ol>
+</div>

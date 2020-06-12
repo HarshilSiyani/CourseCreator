@@ -1,7 +1,7 @@
 <h1><%= @quiz.study_module.course.name %></h1>
 <h2><%= @quiz.study_module.name %></h2>
-<p class="text-bold"><%= @quiz.text %></p>
 
+<div class="card preview">
 <ol>
 <% @quiz.questions.each do |question| %>
   <li><%= question.text %></li>
@@ -21,4 +21,6 @@
   <% end %>
 <% end %>
 </ol>
+</div>
+
 <%= link_to "< Back", :back, class: "mt-3 btn btn-info" %>
