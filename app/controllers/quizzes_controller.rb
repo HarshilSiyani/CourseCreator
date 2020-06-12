@@ -18,7 +18,7 @@ class QuizzesController < ApplicationController
   end
 
   def update
-    raise
+    # raise
     @quiz = Quiz.find(params[:id])
     @quiz.update quiz_params
     @quiz.update question_params

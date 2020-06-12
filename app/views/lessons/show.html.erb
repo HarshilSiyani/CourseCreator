@@ -1,5 +1,8 @@
 <%= link_to "< Back", :back, class: "mt-3 btn btn-info" %>
-<%= @lesson.content %>
+<div class="preview">
+  <%= @lesson.content %>
+
+</div>
 
 <%#= link_to "Edit", edit_course_lesson_path(@course, @lesson), class: "btn btn-primary" %>
 <%#= link_to "submit", edit_course_path(@course), class: "btn btn-primary" %>

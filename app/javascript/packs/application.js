@@ -48,6 +48,7 @@ const Trix = require("trix")
 window.addEventListener("trix-initialize", (event) => {
 
 // https://www.youtube.com/embed/pPy0GQJLZUM
+// https://www.youtube.com/watch?v=SQS4ji0TMtk
 
   const embedBtn = document.createElement("button");
   embedBtn.innerHTML = "youtube";
