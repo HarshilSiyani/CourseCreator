@@ -1,34 +1,28 @@
-<div class="editor">
-  <%= simple_form_for [course, contentable] do |form| %>
-    <%= form.error_notification %>
-    <!--  -->
-    <%= form.simple_fields_for :study_module do |study_module_form| %>
-      <%= study_module_form.input :name, label: "Quiz name" %>
-    <% end %>
-
-    <%= form.input :text, label: "Quiz description" %>
-    <table class='table'>
-      <thead>
-        <tr>
-          <th>Questions</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody class='questions'>
-        <%= form.simple_fields_for :questions do |builder| %>
-          <%= render "#{contentable.class.table_name}/question_fields", f: builder %>
-        <% end %>
-      </tbody>
-    </table>
-
-    <div class="form-actions">
-      <%= form.button :submit %>
-      <%= link_to_add_association 'Add Question', form, :questions, class: 'btn btn-primary',
-            partial: "#{contentable.class.table_name}/question_fields",
-            data: { association_insertion_node: '.questions', association_insertion_method: :append }
-      %>
-    </div>
-
+<%= simple_form_for [course, contentable] do |form| %>
+  <%= form.error_notification %>
+  <!-- study_module.name -->
+  <%= form.simple_fields_for :study_module do |study_module_form| %>
+    <%= study_module_form.input :name, label: "Quiz name" %>
   <% end %>
 
-</div>
+  <!-- quiz.text -->
+  <%= form.input :text, label: "Quiz description" %>
+  <!-- QUESTIONS LISTS -->
+  <div data-controller="nested-form">
+    <template data-target='nested-form.template'>
+      <%= form.simple_fields_for :questions, Question.new, child_index: 'TEMPLATE_RECORD' do |question| %>
+        <%= render "#{contentable.class.table_name}/question_fields", form: question, contentable: contentable %>
+      <% end %>
+    </template>
+
+    <%= form.simple_fields_for :questions do |question| %>
+      <%= render "#{contentable.class.table_name}/question_fields", form: question, contentable: contentable %>
+    <% end %>
+
+    <div data-target="nested-form.add_item">
+      <%= link_to "Add Question", "#", data: { action: "nested-form#add_association" }, class: "small" %>
+    </div>
+  </div>
+
+  <%= form.button :submit, class: "btn btn-primary my-4 w-100" %>
+<% end %>

@@ -1,0 +1,14 @@
+<div class='nested-fields nested-child'>
+  <!-- ANSWER -->
+  <div class='form-group answer-item w-100'>
+    <%= subform.hidden_field :_destroy %>
+    <div class="d-flex justify-content-end">
+      <%= subform.input :correct, as: :boolean, boolean_style: :inline, label: false, class: 'form-control', wrapper_html: { class: 'mb-0' } %>
+      <%= subform.input :text, placeholder: 'Answer content', label: false, class: 'form-control mb-0', wrapper_html: { class: 'w-75 mb-0' } %>
+    </div>
+    <div class="text-right">
+      <%= link_to "— answer", "#", class: "text-body small", data: { action: "click->nested-form#remove_association" } %>
+    </div>
+  </div>
+  
+</div>

@@ -1,0 +1,15 @@
+<h1><%= @quiz.study_module.name %></h1>
+
+<p class="text-bold"><%= @quiz.text %></p>
+<ol>
+<% @quiz.questions.each do |question| %>
+  <li><%= question.text %></li>
+  <% if question.answers %>
+    <ul>
+    <% question.answers.each do |answer| %>
+      <li class="choices"><%= answer.text %></li>
+    <% end %>
+    </ul>
+  <% end %>
+<% end %>
+</ol>
