@@ -23,8 +23,8 @@
       <%= link_to "Add Question", "#", data: { action: "nested-form#add_association" }, class: "small" %>
     </div>
   </div>
-  <div class="form-actions my-4 w-100">
-    <%= form.button :submit, class: "btn btn-info flex-grow-1" %>
-    <%= form.submit "Preview", class: "btn btn-info flex-grow-1" %>
+  <div class="form-actions my-4 d-flex justify-content-between">
+    <%= form.button :submit, class: "btn btn-info w-100 mr-3" %>
+    <%= form.submit "Preview", class: "btn btn-info w-100" %>
   </div>
 <% end %>
