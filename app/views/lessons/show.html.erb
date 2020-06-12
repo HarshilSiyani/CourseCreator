@@ -1,10 +1,14 @@
+
 <div class="card preview">
   <h1><%= @lesson.study_module.course.name %></h1>
   <h2><%= @lesson.study_module.name %></h2>
-  <%= @lesson.content %>
+  <%= @lesson.text.html_safe %>
 </div>
 
+
 <%= link_to "< Back", :back, class: "mt-3 btn btn-info" %>
+
+
 
 <%#= link_to "Edit", edit_course_lesson_path(@course, @lesson), class: "btn btn-primary" %>
 <%#= link_to "submit", edit_course_path(@course), class: "btn btn-primary" %>

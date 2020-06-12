@@ -48,6 +48,8 @@ const Trix = require("trix")
 window.addEventListener("trix-initialize", (event) => {
 
 // https://www.youtube.com/embed/pPy0GQJLZUM
+// https://www.youtube.com/watch?v=SQS4ji0TMtk
+// https://www.youtube.com/watch?time_continue=848&v=2iGBuLQ3S0c&feature=emb_logo
 
   const embedBtn = document.createElement("button");
   embedBtn.innerHTML = "youtube";
@@ -58,13 +60,18 @@ window.addEventListener("trix-initialize", (event) => {
   embedBtn.addEventListener("click", (event) => {
     const youtubeUrl = window.prompt("Please put a youtube link");
     const results = youtubeUrl.match(/.*youtube\.com\/watch\?v=(.*)/);
+    const trixEditor = document.querySelector("trix-editor")
     if (!results){
       return;
     }
     const embedUrl = `https://www.youtube.com/embed/${results[1]}`;
+    // debugger
+    const attachment = new Trix.Attachment({
+      // sgid: trixEditor.closest("form").dataset.sgid,
+      content: `<iframe width="560" height="315" src="${embedUrl}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+    });
 
-    const attachment = new Trix.Attachment({content: `<iframe width="560" height="315" src="${embedUrl}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`});
-    document.querySelector("trix-editor").editor.insertAttachment(attachment);
+    trixEditor.editor.insertAttachment(attachment);
   });
   event.target.toolbarElement.querySelector(".trix-button-group.trix-button-group--text-tools").appendChild(embedBtn);
 });
