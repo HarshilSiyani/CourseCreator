@@ -1,7 +1,7 @@
 <%= link_to "< Back", :back, class: "mt-3 btn btn-info" %>
 <div class="preview">
-  <%= @lesson.content %>
-
+  <%= @lesson.text.html_safe %>
+  <%#= @lesson.content %>
 </div>
 
 

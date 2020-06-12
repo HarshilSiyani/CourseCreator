@@ -27,9 +27,11 @@ class LessonsController < ApplicationController
   def update
     @lesson = Lesson.find(params[:id])
     @lesson.update(lesson_params)
+    @lesson.update_column(:text, lesson_params[:content])
     # raise
     if params[:commit] == "Update"
-      redirect_to edit_course_path(@course, study_module_id: @lesson.study_module.id)
+      redirect_to publish_course_path(@course, study_module_id: @course.study_modules.first)
+      # redirect_to edit_course_path(@course, study_module_id: @lesson.study_module.id)
     else
       redirect_to course_lesson_path(@course, @lesson)
     end

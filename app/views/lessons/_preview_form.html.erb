@@ -1,3 +1,8 @@
 <div class="card preview">
-  <%= @contentable.content %>
+  <%= @contentable.text.html_safe %> %>
+  <%#= @contentable.content %>
 </div>
+
+<% if current_user == @course.teacher %>
+  <%= link_to "Edit course", edit_course_path(@course, study_module_id: @course.study_module_ids.first), class: "btn btn-primary" %>
+<% end %>
