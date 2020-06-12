@@ -9,12 +9,14 @@
   <div class="field"> <%# for Action Text %>
     <%= form.label :content %>
     <%= form.rich_text_area :content, class: "editor" %>
-    <div class="d-flex justify-content-between">
-      <%= form.submit "Update", class: "btn btn-info" %>
+
+    <div class="form-actions my-4 d-flex justify-content-between">
+      <%= form.submit "Update", class: "btn btn-info w-100 mr-3" %>
       <%#= form.submit "Preview", class: "btn btn-info" %>
     </div>
     <%# GET    /courses/:course_id/lessons/:id %>
     <%#= link_to "Preview", course_lesson_path(course, contentable), class: "btn btn-info" %>
+
   </div>
 <% end %>
 
