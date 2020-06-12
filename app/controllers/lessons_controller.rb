@@ -4,7 +4,7 @@ class LessonsController < ApplicationController
   def new
     # GET    /courses/:course_id/lessons/new
     @lesson = Lesson.new
-    @lesson.study_module = StudyModule.new()
+    @lesson.study_module = StudyModule.new
   end
 
   def create

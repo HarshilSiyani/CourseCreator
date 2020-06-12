@@ -24,7 +24,11 @@ class QuizzesController < ApplicationController
     @quiz.update question_params
 
     # handle_questions(@quiz) # OLD CODE
-    redirect_to edit_course_path(@course, study_module_id: @quiz.study_module.id)
+    if params[:commit] == "Preview"
+      redirect_to course_quiz_path(@course, @quiz)
+    else
+      redirect_to edit_course_path(@course, study_module_id: @quiz.study_module.id)
+    end
   end
 
   def show
