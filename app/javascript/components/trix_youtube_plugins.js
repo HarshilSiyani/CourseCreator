@@ -78,8 +78,8 @@ class EmbedController {
     this.hrefElement = this.toolbar.querySelector("[data-trix-input][name='href']")
     this.embedContainerElement = this.toolbar.querySelector("[data-behavior='embed_container']")
     this.embedElement = this.toolbar.querySelector("[data-behavior='embed_url']")
-    if (this.embedContainerElement === null) console.log("this.embedContainerElement -- not available");
-    if (this.embedElement === null) console.log("this.embedElement -- not available");
+    // if (this.embedContainerElement === null) console.log("this.embedContainerElement -- not available");
+    // if (this.embedElement === null) console.log("this.embedElement -- not available");
     
     this.reset()
     this.installEventHandlers()
