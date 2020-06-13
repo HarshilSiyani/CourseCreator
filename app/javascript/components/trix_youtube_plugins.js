@@ -3,7 +3,6 @@ import Rails from "@rails/ujs"
 
 const initEmbedBtn = () => {
   // console.log(`initEmbedBtn event fired -> ${new Date().valueOf()}`);
-  
   let lang = Trix.config.lang;
   Trix.config.toolbar = {
     getDefaultHTML: function() {
@@ -68,6 +67,14 @@ const embedBtnSnippet = (element) => {
   `;
 }
 
+const insertBtnSnippet = (editor) => {
+  const embedContainer = editor.toolbarElement.querySelector("[data-behavior='embed_container']");
+
+  if (embedContainer === undefined || embedContainer === null){
+    editor.toolbarElement.querySelector(".trix-dialogs .trix-dialog--link").insertAdjacentHTML("beforeend", embedBtnSnippet());
+  }
+}
+
 class EmbedController {
   constructor(element) {
     this.pattern = /^https:\/\/([^\.]+\.)?youtube\.com\/watch\?v=(.*)/
@@ -76,10 +83,9 @@ class EmbedController {
     this.editor = element.editor
     this.toolbar = element.toolbarElement
     this.hrefElement = this.toolbar.querySelector("[data-trix-input][name='href']")
+    // debugger
     this.embedContainerElement = this.toolbar.querySelector("[data-behavior='embed_container']")
     this.embedElement = this.toolbar.querySelector("[data-behavior='embed_url']")
-    // if (this.embedContainerElement === null) console.log("this.embedContainerElement -- not available");
-    // if (this.embedElement === null) console.log("this.embedElement -- not available");
     
     this.reset()
     this.installEventHandlers()
@@ -134,21 +140,12 @@ class EmbedController {
   }
 }
 
+// The toolbar will be render on when building DOM element
+initEmbedBtn();
+
 document.addEventListener("trix-initialize", (event) => {
   // console.log(`trix-initialize event fired -> ${new Date().valueOf()}`);
-  initEmbedBtn();
-})
-document.addEventListener("DOMContentLoaded", (event) => {
-  // console.log(`DOMContentLoaded event fired -> ${new Date().valueOf()}`);
-  const editor = event.target.querySelector("trix-editor");
-  if (editor)
-    editor.toolbarElement.querySelector(".trix-dialogs .trix-dialog--link").insertAdjacentHTML("beforeend", embedBtnSnippet());
-})
-document.addEventListener("trix-focus", (event) => {
-  const embedContainer = event.target.toolbarElement.querySelector("[data-behavior='embed_container']");
-  if (embedContainer) {
-    new EmbedController(event.target);
-  } else {
-    console.log("target not found")
-  }
+  // fail safe the method by injecting 
+  insertBtnSnippet(event.target);
+  new EmbedController(event.target);
 })
