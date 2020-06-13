@@ -141,8 +141,14 @@ document.addEventListener("trix-initialize", (event) => {
 document.addEventListener("DOMContentLoaded", (event) => {
   // console.log(`DOMContentLoaded event fired -> ${new Date().valueOf()}`);
   const editor = event.target.querySelector("trix-editor");
-  editor.toolbarElement.querySelector(".trix-dialogs .trix-dialog--link").insertAdjacentHTML("beforeend", embedBtnSnippet()) 
+  if (editor)
+    editor.toolbarElement.querySelector(".trix-dialogs .trix-dialog--link").insertAdjacentHTML("beforeend", embedBtnSnippet());
 })
 document.addEventListener("trix-focus", (event) => {
-  new EmbedController(event.target)
+  const embedContainer = event.target.toolbarElement.querySelector("[data-behavior='embed_container']");
+  if (embedContainer) {
+    new EmbedController(event.target);
+  } else {
+    console.log("target not found")
+  }
 })

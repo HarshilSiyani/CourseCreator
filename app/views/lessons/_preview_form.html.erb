@@ -1,8 +1,10 @@
-<div class="card preview">
-  <%= @contentable.text.html_safe %>
-  <%#= @contentable.content %>
-</div>
+<div class="p-3">
+  <div>
+    <h2><%= @contentable.study_module.name %></h2>
+    <%= @contentable.content %>
+  </div>
 
-<% if current_user == @course.teacher %>
-  <%= link_to "Edit course", edit_course_path(@course, study_module_id: @course.study_module_ids.first), class: "btn btn-primary" %>
-<% end %>
+  <% if current_user == @course.teacher %>
+    <%= link_to "Edit course", edit_course_path(@course, study_module_id: @course.study_module_ids.first), class: "btn btn-primary" %>
+  <% end %>
+</div>
