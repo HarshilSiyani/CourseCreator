@@ -27,7 +27,8 @@ class LessonsController < ApplicationController
   def update
     @lesson = Lesson.find(params[:id])
     @lesson.update(lesson_params)
-    @lesson.update_column(:text, lesson_params[:content])
+    # No longer need to update @lesson.text attribute
+    # @lesson.update_column(:text, lesson_params[:content])
     # raise
     if params[:commit] == "Preview"
       redirect_to course_lesson_path(@course, @lesson)
