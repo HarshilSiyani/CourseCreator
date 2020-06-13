@@ -1,6 +1,5 @@
 <%# POST   /courses/:course_id/lessons %>
 <%= simple_form_for [course, contentable] do |form| %>
-<%#= simple_form_for [course, contentable], html: {"data-sgid": contentable.attachable_sgid} do |form| %>
   <%#= raise %>
   <%= form.simple_fields_for :study_module do |study_module_form| %>
     <%= study_module_form.input :name %>
@@ -11,13 +10,8 @@
     <%= form.rich_text_area :content, class: "editor" %>
 
     <div class="form-actions my-4 d-flex justify-content-between">
-      <%= form.submit "Update", class: "btn btn-info w-100 mr-3" %>
-      <%#= form.submit "Preview", class: "btn btn-info" %>
+      <%= form.button :submit, class: "btn btn-info w-100 mr-3" %>
+      <%= form.submit "Preview", class: "btn btn-info w-100" %>
     </div>
-    <%# GET    /courses/:course_id/lessons/:id %>
-    <%#= link_to "Preview", course_lesson_path(course, contentable), class: "btn btn-info" %>
-
   </div>
 <% end %>
-
-<%#= javascript_pack_tag 'trix_youtube_plugins' %>
