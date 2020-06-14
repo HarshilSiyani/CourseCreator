@@ -9,7 +9,7 @@ class QuizzesController < ApplicationController
   def create
     @quiz = Quiz.new(quiz_create_params)
     @quiz.study_module.course = @course
-
+    # raise
     if @quiz.save
       redirect_to edit_course_path(@course, study_module_id: @quiz.study_module.id)
     else
@@ -63,8 +63,8 @@ class QuizzesController < ApplicationController
       .permit(
         :text,
         study_module_attributes: StudyModule.attribute_names.map(&:to_sym),
-        questions_attributes: Question.attribute_names.map(&:to_sym),
-        answers_attributes: Answer.attribute_names.map(&:to_sym)
+        questions_attributes: Question.attribute_names.map(&:to_sym).push(:_destroy)
+        .push(answers_attributes: Answer.attribute_names.map(&:to_sym).push(:_destroy))
       )
   end
 

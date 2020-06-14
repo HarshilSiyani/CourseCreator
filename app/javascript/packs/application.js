@@ -27,12 +27,12 @@ require("@rails/actiontext")
 import "bootstrap";
 import "cocoon-js";
 // BEGIN - StimulusJS for nested form
-import { Application } from "stimulus"
-import { definitionsFromContext } from "stimulus/webpack-helpers"
+import { Application } from "stimulus";
+import { definitionsFromContext } from "stimulus/webpack-helpers";
 
-const application = Application.start()
-const context = require.context("../controllers", true, /\.js$/)
-application.load(definitionsFromContext(context))
+const application = Application.start();
+const context = require.context("../controllers", true, /\.js$/);
+application.load(definitionsFromContext(context));
 // END - StimulusJS for nested form
 
 // Internal imports, e.g:
@@ -43,7 +43,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
 });
 
-const Trix = require("trix")
+const Trix = require("trix");
 
 window.addEventListener("trix-initialize", (event) => {
 
