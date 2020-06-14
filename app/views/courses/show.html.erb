@@ -6,7 +6,28 @@
   <% if current_user != @course.teacher %>
     <%= link_to "Enroll",  course_enrollments_path(@course), method: :post %>
   <% else %>
-    <div><%= link_to "Students", course_path(@course), class: "text-info" %></div>
+    <!-- <div><%#= #link_to "Students", course_path(@course), class: "text-info" %></div> -->
     <div><%= link_to "Contents", edit_course_path(@course, study_module_id: @course.study_modules.first.id), class: "text-info" %></div>
   <% end %>
+</div>
+
+<div class = "card m-5 p-3">
+  <% if current_user == @course.teacher %>
+  <h3>Students</h3>
+  <table>
+    <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+  </tr>
+    <% @course.enrollments.each do |enrolled| %>
+    <tr>
+      <td><%= enrolled.student.first_name %></td>
+      <td><%= enrolled.student.last_name %></td>
+      <td><%= enrolled.student.email %></td>
+    </tr>
+  <% end %>
+  </table>
+  <% end %>
+
 </div>
