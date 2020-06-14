@@ -13,7 +13,11 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    <div class="banner">
+    <% if current_page? root_path %>
+      <div class='home'>
+    <% else %>
+      <div class="banner">
+    <% end %>
       <%= yield %>
       <%= render 'shared/flashes' %>
     </div>
