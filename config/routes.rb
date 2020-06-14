@@ -22,5 +22,5 @@ Rails.application.routes.draw do
     resources :progresses, only: :create
   end
 
-
+  resources :youtube, only: :show
 end
