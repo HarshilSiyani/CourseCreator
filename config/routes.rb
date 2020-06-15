@@ -23,4 +23,13 @@ Rails.application.routes.draw do
   end
 
   resources :youtube, only: :show
+
+  namespace :chat do
+    resources :courses, only: :show do
+    # chat_course GET    /chat/courses/:id          chat/courses#show
+      resources :messages, only: :create
+      # chat_course_messages POST   /chat/courses/:course_id/messages         chat/messages#create
+    end
+  end
 end
+
