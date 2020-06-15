@@ -1,0 +1,28 @@
+<div class="preview">
+<%= simple_form_for [@course, @contentable] do |quiz_builder| %>
+
+  <% @contentable.questions.each do |question| %>
+  <%= quiz_builder.simple_fields_for :questions, question do |question_builder| %>
+    <ol>
+      <li>
+      <%= question.text %>
+      <ul class="fa-ul">
+        <% question.answers.each do |answer| %>
+        <%= question_builder.simple_fields_for :answers, answer do |answer_builder| %>
+          <li>
+          <%= answer_builder.input :correct, as: :boolean, boolean_style: :inline, label: false, class: 'form-controlasda', wrapper_html: { class: 'mb-0 pl-2' } %>
+          <div class="answer-text pr-4"><%= answer.text %></div>
+          </li>
+        <% end %>
+        <% end %>
+      </ul>
+      </li>
+    </ol>
+  <% end %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= quiz_builder.button :submit %>
+  </div>
+<% end %>
+</div>
