@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  layout :student_layout
+layout :student_layout
 
   skip_before_action :authenticate_user!, only: :index
   before_action :set_course, only: [:edit, :update, :publish]
@@ -40,6 +40,7 @@ class CoursesController < ApplicationController
 
   def publish
 
+
     study_module = @course.study_modules.find(params[:study_module_id])
 
     redirect_to course_path(@course) unless current_user == @course.teacher || current_user.enrollments.map(&:course).include?(@course)
@@ -70,6 +71,6 @@ class CoursesController < ApplicationController
   end
 
   def student_layout
-    @current_user.enrollments.map(&:course).include?(@course) ? "student_view" : "application"
+    current_user.enrollments.size.positive? && current_user.enrollments.map(&:course).include?(@course) ? "student_view" : "application"
   end
 end
