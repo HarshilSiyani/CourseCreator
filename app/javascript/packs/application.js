@@ -37,7 +37,6 @@ document.addEventListener('turbolinks:load', () => {
 
 const hero = document.querySelector(".hero");
 const slider = document.querySelector(".slider");
-const headline = document.querySelector(".headline");
 
 
 const tl = new TimelineMax();

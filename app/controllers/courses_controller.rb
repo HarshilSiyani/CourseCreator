@@ -37,7 +37,10 @@ class CoursesController < ApplicationController
   end
 
   def publish
-    @contentable = @course.study_modules.find(params[:study_module_id]).contentable
+    study_module = @course.study_modules.find(params[:study_module_id])
+
+    redirect_to course_path(@course) unless current_user == @course.teacher || current_user.enrollments.map(&:course).include?(@course)
+    @contentable = study_module.contentable
   end
 
   private
