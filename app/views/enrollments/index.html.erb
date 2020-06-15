@@ -6,8 +6,9 @@
   <div class="card-header"><h3><b><%= enrollment.course.name %></b></h3></div>
   <div class="card-body">
     <h5 class="card-title"><%= enrollment.course.category %></h5>
-    <p class="card-text"><%= enrollment.course.description %></p>
+    <p class="card-text desc"><%= enrollment.course.description %></p>
   </div>
+  <%= link_to  "Study", publish_course_path(enrollment.course, study_module_id: enrollment.course.study_modules.first), class: "btn btn-primary" %>
 </div>
 <% end %>
 </div>

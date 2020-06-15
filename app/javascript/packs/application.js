@@ -29,8 +29,12 @@ import "bootstrap";
 // import "cocoon-js";
 // import { initSelect2 } from '../components/init_select2';
 import "../components/trix_youtube_plugins";
+import { initChatroomCable } from '../channels/chatroom_channel'
+import { initNotificationCable } from '../channels/notification_channel'
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
+  initChatroomCable();
+  initNotificationCable();
 });
 
