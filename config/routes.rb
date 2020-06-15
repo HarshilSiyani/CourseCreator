@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   namespace :study do
     resources :courses, only: [:show] do
       get 'attempt', to: 'courses#attempt'
+      post '', to: 'courses#grade'
     end
     resources :progresses, only: :create
   end

@@ -17,11 +17,18 @@ module Study
       @contentable = @course.study_modules.find(params[:study_module_id]).contentable
     end
 
+    def grade
+      @course = Course.find(params[:course_id])
+      @contentable = @course.study_modules.find(params[:study_module_id]).contentable
+
+      raise
+    end
+
     private
 
     def current_user_enrolled?(course)
+      # current_user.enrollment_ids.include?(course.id) #=> wrong
       current_user.enrollments.map(&:course).include?(course)
-      # current_user.enrollment_ids.map(&:)include?(course.id)
     end
   end
 end
