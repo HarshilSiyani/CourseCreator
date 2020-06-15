@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :enrollments, only: :create
     resources :study_modules, only: [:new, :create]
     resources :lessons, only: [:new, :create, :show, :edit, :update]
-    resources :quizzes, only: [:new, :create, :show, :edit, :update]
+    resources :quizzes, only: [:new, :create, :show, :update]
     get :publish, on: :member
   end
 
@@ -18,10 +18,14 @@ Rails.application.routes.draw do
   patch '/courses/:id/publish', to: 'courses#publish'
 
   namespace :study do
-    resources :courses, only: :show
+    resources :courses, only: [:show] do
+      get 'attempt', to: 'courses#attempt'
+      post '', to: 'courses#grade'
+    end
     resources :progresses, only: :create
   end
 
+  get '/quizzes/:id/answers', to: 'quizzes#answers', as: :quiz_answers
   resources :youtube, only: :show
 
   namespace :chat do

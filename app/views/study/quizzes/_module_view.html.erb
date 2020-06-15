@@ -1,0 +1,27 @@
+<div class="bg-white p-5 m-3" data-controller="student-quiz">
+<%= simple_form_for [@course, @contentable], url: quiz_answers_path(@contentable.id, format: :json), method: :get, remote: true, data: { target: "student-quiz.form", contentable_id: @contentable.id } do |quiz_builder| %>
+  <%= quiz_builder.error_notification %>
+  <ol>
+  <% @contentable.questions.each do |question| %>
+  <%= quiz_builder.simple_fields_for :questions, question do |question_builder| %>
+      <li>
+        <%= question_builder.label question.text %>
+        <ul class="fa-ul">
+          <%= question_builder.collection_check_boxes :answers, question.answers, :id, :text, item_wrapper_tag: :li do |answer_builder| %>
+          <%= answer_builder.label { answer_builder.check_box("data-question-id": question.id, class: "mr-1") + answer_builder.text } %>
+          <% end %>
+        </ul>
+      </li>
+  <% end %>
+  <% end %>
+  </ol>
+
+  <div class="form-actions">
+    <div class="btn btn-primary" data-action="click->student-quiz#checkAnswers" data-disable-with="Checking answers..">
+      Check answer
+    </div>
+    <%# This button_tag will send user params with the GET request %>
+    <%#= button_tag "Hand in", class: "btn btn-primary", data: { disable_with: "Please wait...", action: "click->student-quiz#getAnswers"} %>
+  </div>
+<% end %>
+</div>
