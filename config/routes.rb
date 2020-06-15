@@ -18,7 +18,10 @@ Rails.application.routes.draw do
   patch '/courses/:id/publish', to: 'courses#publish'
 
   namespace :study do
-    resources :courses, only: :show
+    resources :courses, only: [:show] do
+      get 'attempt', to: 'courses#attempt'
+      post '', to: 'courses#grade'
+    end
     resources :progresses, only: :create
   end
 

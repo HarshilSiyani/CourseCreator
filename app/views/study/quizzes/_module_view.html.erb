@@ -1,0 +1,17 @@
+<%# <div> %>
+  <%#= link_to "Attempt quiz", study_course_attempt_path(@course, study_module_id: contentable.study_module.id) %>
+<%# </div> %>
+<div class="preview">
+<%= simple_form_for [@course, @contentable] do |quiz_builder| %>
+  
+  <%= quiz_builder.simple_fields_for :questions do |question_builder| %>
+    <ol>
+      <%= question_builder.label :text %>
+    </ol>
+  <% end %>
+
+  <div class="form-actions">
+    <%= quiz_builder.button :submit %>
+  </div>
+<% end %>
+</div>
