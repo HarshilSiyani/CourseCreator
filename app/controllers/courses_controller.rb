@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+  layout :student_layout
+
   skip_before_action :authenticate_user!, only: :index
   before_action :set_course, only: [:edit, :update, :publish]
 
@@ -37,6 +39,7 @@ class CoursesController < ApplicationController
   end
 
   def publish
+
     study_module = @course.study_modules.find(params[:study_module_id])
 
     redirect_to course_path(@course) unless current_user == @course.teacher || current_user.enrollments.map(&:course).include?(@course)
@@ -64,5 +67,9 @@ class CoursesController < ApplicationController
     )
     lesson.content.body = "Welcome to #{course.name}!"
     return lesson
+  end
+
+  def student_layout
+    @current_user.enrollments.map(&:course).include?(@course) ? "student_view" : "application"
   end
 end
