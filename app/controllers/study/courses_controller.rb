@@ -20,7 +20,8 @@ module Study
     private
 
     def current_user_enrolled?(course)
-      current_user.enrollment_ids.include?(course.id)
+      current_user.enrollments.map(&:course).include?(course)
+      # current_user.enrollment_ids.map(&:)include?(course.id)
     end
   end
 end
