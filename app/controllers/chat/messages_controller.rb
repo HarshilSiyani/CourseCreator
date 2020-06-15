@@ -6,16 +6,16 @@ class Chat::MessagesController < ApplicationController
     @message.chatroom = @chatroom
     @message.user = current_user
     if @message.save
-      ChatroomChannel.broadcast_to( # broadcast to the current chatroom
+      ChatroomChannel.broadcast_to(
         @chatroom,
         render_to_string(partial: "chat/messages/message", locals: { message: @message })
       )
-      NotificationChannel.broadcast_to( # broadcast to the current course's teacher
+      NotificationChannel.broadcast_to(
         @course.teacher,
         render_to_string(partial: "chat/messages/notification", locals: { message: @message, course: @course })
       )
       @course.students.each do |student|
-        NotificationChannel.broadcast_to( # broadcast to the current course's student
+        NotificationChannel.broadcast_to(
           student,
           render_to_string(partial: "chat/messages/notification", locals: { message: @message, course: @course })
         )
@@ -33,8 +33,3 @@ class Chat::MessagesController < ApplicationController
     params.require(:message).permit(:content)
   end
 end
-
-
-# notificationHtml: render_to_string(partial: "chat/messages/notification", locals: { message: @message })
-# messageHtml: render_to_string(partial: "chat/messages/message", locals: { message: @message }),
-# messageHtml: render_to_string(partial: "chat/messages/message", locals: { message: @message }),

@@ -23,5 +23,3 @@ const initNotificationCable = () => {
 
 export { initNotificationCable };
 
-
-// notificationDisplay.insertAdjacentHTML('afterbegin', data.notificationHtml);
