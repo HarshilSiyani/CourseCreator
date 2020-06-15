@@ -16,14 +16,3 @@ const initChatroomCable = () => {
 
 export { initChatroomCable };
 
-
-// const notificationDropdown = document.querySelector('#notificationDropdown')
-// const notificationCount = document.querySelector('.notification-count')
-// let count = 0;
-
-// messagesContainer.insertAdjacentHTML('beforeend', data.messageHtml);
-// notificationDropdown.insertAdjacentHTML('afterbegin', data.notificationHtml);
-// // count new msg & change notification count
-// count = count + 1;
-// notificationCount.classList.add("notification-count-show");
-// notificationCount.innerText = count;
