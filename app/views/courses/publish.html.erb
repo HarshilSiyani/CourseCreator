@@ -22,6 +22,7 @@
                 <button class="btn btn-primary js-copy">Copy Link</button>
               </div>
             </div>
+
           </div>
         </div>
         <%= link_to "Edit course", edit_course_path(@course, study_module_id: @course.study_module_ids.first), class: "btn btn-primary m-2" %>
@@ -58,3 +59,4 @@
 
 
 <%= link_to "Q&A", chat_course_path(@course) %>
+

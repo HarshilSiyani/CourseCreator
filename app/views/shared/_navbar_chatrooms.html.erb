@@ -1,0 +1,26 @@
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Messages
+  </a>
+  <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+    <%# List user's courses & link to the chatroom %>
+    <% if !current_user.courses.empty? %>
+      <strong style="text-decoration: underline"> Courses </strong>
+      <% current_user.courses.each do |course| %>
+        <a class="dropdown-item"> <%=link_to_unless_current course.name, chat_course_path(course) %></a>
+      <% end %>
+      <hr>
+    <% end %>
+    <%# List user's enrollments & link to the chatroom %>
+    <% if !current_user.enrollments.empty? %>
+      <strong style="text-decoration: underline"> Enrollments </strong>
+      <% current_user.enrollments.each do |enrollment| %>
+        <a class="dropdown-item"> <%=link_to_unless_current enrollment.course.name, chat_course_path(enrollment.course) %></a>
+      <% end %>
+    <% end %>
+    <%# If user has no courses %>
+    <% if current_user.enrollments.empty? && current_user.courses.empty?%>
+      No courses!
+    <% end %>
+  </div>
+</li>
