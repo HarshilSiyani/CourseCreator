@@ -1,14 +1,8 @@
 class LessonsController < ApplicationController
-  before_action :set_course, only: [:new, :create, :show, :update]
+  before_action :set_course, only: [:create, :show, :update]
 
-  def new
-    # GET    /courses/:course_id/lessons/new
-    @lesson = Lesson.new
-    @lesson.study_module = StudyModule.new
-  end
 
   def create
-    # raise
     # POST   /courses/:course_id/lessons
     @lesson = Lesson.new(lesson_params)
     @lesson.study_module.course = @course
@@ -34,8 +28,18 @@ class LessonsController < ApplicationController
       redirect_to course_lesson_path(@course, @lesson)
     else
       # redirect_to edit_course_path(@course, study_module_id: @lesson.study_module.id)
-      redirect_to publish_course_path(@course, study_module_id: @course.study_modules.first)
+      redirect_to edit_course_path(@course, study_module_id: @lesson.study_module.id)
     end
+  end
+
+  def destroy
+    # @course = Course.find(params[:id])
+    # @lesson = Lesson.find(params[:id])
+    # @course.lesson = @lesson
+
+    # if @lesson.destroy
+    #   redirect_to edit_course_path(@course, study_module_id: @lesson.study_module.id.next)
+    # end
   end
 
   private

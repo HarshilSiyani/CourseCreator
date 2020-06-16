@@ -1,5 +1,5 @@
 class Lesson < ApplicationRecord
-  has_one :study_module, as: :contentable
+  has_one :study_module, as: :contentable, dependent: :destroy
   has_rich_text :content
   validates :study_module, presence: true
   # include ActionText::Attachable

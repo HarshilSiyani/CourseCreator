@@ -36,7 +36,15 @@ layout :student_layout
 
   def edit
     # raise
+    if params[:lesson] == "true"
+      @lesson = Lesson.new
+      @lesson.study_module = StudyModule.new
+    elsif params[:quiz] == "true"
+      @quiz = Quiz.new
+      @quiz.study_module = StudyModule.new
+    else
     @contentable = @course.study_modules.find(params[:study_module_id]).contentable
+    end
   end
 
   def publish

@@ -1,10 +1,6 @@
 class QuizzesController < ApplicationController
-  before_action :set_course, only: [:new, :create, :update, :show]
+  before_action :set_course, only: [:create, :update, :show]
 
-  def new
-    @quiz = Quiz.new
-    @quiz.study_module = StudyModule.new
-  end
 
   def create
     @quiz = Quiz.new(quiz_create_params)
