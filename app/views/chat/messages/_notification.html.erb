@@ -1,8 +1,9 @@
 <div class="message-container" id="message-<%= message.id %>">
   <i class="author">
     <span><strong> <%= message.user.nickname %> </strong></span>
-    <small>@<%= course.name %></small>
+    <small>@<%=link_to course.name, chat_course_path(course) %></small>
   </i>
   <p><%= message.content %></p>
   <hr>
 </div>
+

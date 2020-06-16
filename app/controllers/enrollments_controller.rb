@@ -8,6 +8,7 @@ class EnrollmentsController < ApplicationController
     @enrollment = Enrollment.new(enrollment_params)
     @enrollment.student = current_user
     if @enrollment.save
+      flash[:notice] = render_to_string(partial: "chat/messages/welcome", locals: { user: current_user })
       redirect_to user_enrollments_path(current_user)
     else
       redirect_to course_path(@enrollment.course)
