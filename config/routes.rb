@@ -18,11 +18,8 @@ Rails.application.routes.draw do
   patch '/courses/:id/publish', to: 'courses#publish'
 
   namespace :study do
-    resources :courses, only: [:show] do
-      get 'attempt', to: 'courses#attempt'
-      post '', to: 'courses#grade'
-    end
-    resources :progresses, only: :create
+    resources :courses, only: [:show]
+    get 'progresses/:course_id', to: 'progresses#show', as: :current_progress
   end
 
   get '/quizzes/:id/answers', to: 'quizzes#answers', as: :quiz_answers
