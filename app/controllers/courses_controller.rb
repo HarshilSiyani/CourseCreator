@@ -19,6 +19,7 @@ layout :student_layout
     # raise
 
     if @course.save
+      Chatroom.create(course: @course)
       redirect_to course_path(@course)
     else
       render :new
