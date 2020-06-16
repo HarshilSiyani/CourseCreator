@@ -1,7 +1,9 @@
 <div class="message-container" id="message-<%= message.id %>">
   <i class="author">
     <span><strong> <%= message.user.nickname %> </strong></span>
+    <%# time_ago_in_words() -- built in Rails helpers method %>
     <small style="color: blue"><%= time_ago_in_words(message.created_at.to_datetime) %> ago</small>
+    <%# Below only show "mins ago", bad if "2,302 mins ago":  %>
     <!-- <small style="color: blue"><%#= ((DateTime.now - message.created_at.to_datetime) * 24 * 60).to_i %> mins ago</small> -->
   </i>
   <p><%= message.content %></p>
