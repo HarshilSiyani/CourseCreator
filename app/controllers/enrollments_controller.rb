@@ -7,7 +7,7 @@ class EnrollmentsController < ApplicationController
   def create
     @enrollment = Enrollment.new(enrollment_params)
     @enrollment.student = current_user
-
+    @enrollment.module_index = 1
     if @enrollment.save
       flash[:notice] = render_to_string(partial: "chat/messages/welcome", locals: { user: current_user })
       redirect_to user_enrollments_path(current_user)
