@@ -50,3 +50,23 @@ body{
 #url{
   width: 100%;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: darkgrey;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: grey;
+}
+
+// .title{
+//   border: none;
+//   background: blue;
+// }
