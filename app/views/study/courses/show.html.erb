@@ -20,9 +20,9 @@
         <% @course.study_modules.each do |study_module| %>
           <li class = "p-1">
             <% if study_module.contentable_type == "Lesson" %>
-              <i class="far fa-file-alt"></i> - <%=link_to_unless_current study_module.name, publish_course_path(@course, study_module_id: study_module.id) %>
+              <i class="far fa-file-alt"></i> - <%=link_to_unless_current study_module.name, study_course_path(@course, study_module_id: study_module.id) %>
             <% else %>
-              <i class="fas fa-tasks"></i> - <%=link_to_unless_current study_module.name, publish_course_path(@course, study_module_id: study_module.id) %>
+              <i class="fas fa-tasks"></i> - <%=link_to_unless_current study_module.name, study_course_path(@course, study_module_id: study_module.id) %>
             <% end %>
             </li>
         <% end %>
