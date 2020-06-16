@@ -3,10 +3,6 @@ import { Controller } from "stimulus";
 export default class extends Controller {
   static targets = ["form"]
 
-  connect() {
-    console.log(this.formTarget);
-  }
-
   getQuizId() {
     return this.formTarget.dataset.contentableId;
   }
@@ -35,24 +31,37 @@ export default class extends Controller {
       question_id: parseInt(answer.dataset.questionId) 
     } )
     const correctAnswers = this.convertArrayToObject(data["answers"], "id");
-    
+    // console.log(correctAnswers);
     // Reset form before begin
     this.resetForm();
 
+    let correctCount = 0;
     userChoices.forEach((choice, index) => {
       const isUserCorrect = correctAnswers[choice.id].correct === choice.checked
       const correctIcon = `<span class="fa-li"><i class="fas fa-check-circle"></i></span>`;
       const incorrectIcon = `<span class="fa-li"><i class="fas fa-times"></i></span>`;
 
-      // notify users if current choices are correct answers
+      if (isUserCorrect) correctCount += 1;
+      // display if user choose the correct answers
       if (isUserCorrect && choice.checked) {
         checkboxes[index].parentElement.insertAdjacentHTML("afterbegin", correctIcon)
       } else if (!isUserCorrect && choice.checked) {
+        // display if user choose the wrong answers
         checkboxes[index].parentElement.insertAdjacentHTML("afterbegin", incorrectIcon)
       }
-
     })
 
+    if (correctCount === Object.keys(correctAnswers).length)
+      this.letUserProceed();
+  }
+
+  letUserProceed() {
+    // console.log("User can proceed");
+    // console.log(document.querySelectorAll(".module-nav-right"));
+    const navBtns = document.querySelectorAll(".module-nav-right");
+    // console.log(navBtns);
+    navBtns[0].style.display = "none";
+    navBtns[1].style.display = "inline";
   }
 
   resetForm() {

@@ -12,6 +12,7 @@ class LessonsController < ApplicationController
     # POST   /courses/:course_id/lessons
     @lesson = Lesson.new(lesson_params)
     @lesson.study_module.course = @course
+
     if @lesson.save
       redirect_to edit_course_path(@course, study_module_id: @lesson.study_module.id)
     else

@@ -4,6 +4,8 @@ class StudyModule < ApplicationRecord
 
   validates :name, presence: true
 
+  before_create :set_next_id
+
   def next_module
     self.class.where(course_id: course_id).where("id > ?", id).first
   end
@@ -18,5 +20,11 @@ class StudyModule < ApplicationRecord
 
   def last_module
     self.class.where(course_id: course_id).last
+  end
+
+  private
+
+  def set_next_id
+    self.index = course.last_module.index + 1
   end
 end

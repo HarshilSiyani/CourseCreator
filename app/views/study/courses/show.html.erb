@@ -1,35 +1,36 @@
 <div class="d-flex justify-content-between align-items-center">
   <div>
     <% previous_module_id = @current_module.previous_module.nil? ? @course.first_module.id : @current_module.previous_module.id %>
-    <%= link_to_unless_current icon("fas", "angle-left", class: "fa-lg", id: "module-nav-left"), 
+    <%= link_to_unless_current icon("fas", "angle-left", class: "fa-lg module-nav-left"), 
         study_course_path(@course, study_module_id: previous_module_id) %>
   </div>
-  <h4 class="text-small m-2"><b><%= @course.name %></b></h4>
+  <h4 class="text-small m-2"><b><%= @current_module.name %></b></h4>
   <div>
     <% next_module_id = @current_module.next_module.nil? ? @course.last_module.id : @current_module.next_module.id %>
-    <%= link_to_unless_current icon("fas", "angle-right", class: "fa-lg", id: "module-nav-right"),          
-        study_course_path(@course, study_module_id: next_module_id) %>
+    <%= icon("fas", "angle-right", class: "fa-lg module-nav-right", style: "display: #{@quiz_passed ? "none" : "inline" };" ) %>
+    <%= link_to_unless_current icon("fas", "angle-right", class: "fa-lg"), study_course_path(@course, study_module_id: next_module_id), class: "module-nav-right", style: "display: #{@quiz_passed ? "inline" : "none" };" %>
   </div>
 </div>
 
-<div class="d-flex mt-3">
+<div class="d-flex mt-3 h-100" data-controller="progresses" >
   <div id="course-sidebar" class="mr-5">
     <div id="topic-list" class="flex-grow-1 mt-2 mr-1">
-      <h5 class = "m-1">Contents</h5>
-      <ol>
+      <h5 class = "m-1"><%= @course.name %></h5>
+      <ol class="fa-ul" data-target="progresses.list">
         <% @course.study_modules.each do |study_module| %>
-          <li class = "p-1"><%= link_to_unless_current study_module.name, study_course_path(@course, study_module_id: study_module.id) %></li>
+          <li class = "p-1">
+            <span class="fa-li"></span>
+            <%= link_to_unless_current "#{study_module.index}. #{study_module.name}", study_course_path(@course, study_module_id: study_module.id) %>
+          </li>
         <% end %>
-          <h5 class="mt-4">END OF COURSE </h5>
       </ol>
     </div>
     <!-- <div id="settings">Settings</div> -->
   </div>
-  <div class="modules bg-muted d-flex flex-column">
-    <div id="editor" class="flex-grow-1">
+  <div class="modules bg-muted w-100">
+    <%= render partial: '/study/progresses/show', locals: { course: @course } %>
+    <div class="preview h-100">
       <%= render "study/#{@contentable.class.table_name}/module_view", contentable: @contentable %>
-    </div>
-    <div class="course-description">
     </div>
   </div>
 </div>

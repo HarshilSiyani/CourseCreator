@@ -7,6 +7,7 @@ class EnrollmentsController < ApplicationController
   def create
     @enrollment = Enrollment.new(enrollment_params)
     @enrollment.student = current_user
+
     if @enrollment.save
       redirect_to user_enrollments_path(current_user)
     else
