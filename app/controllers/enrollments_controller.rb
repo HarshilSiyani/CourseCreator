@@ -9,8 +9,6 @@ class EnrollmentsController < ApplicationController
     @enrollment.student = current_user
     if @enrollment.save
       flash[:notice] = render_to_string(partial: "chat/messages/welcome", locals: { user: current_user })
-      # flash[:notice] = "#{view_context.link_to('Come say hi', chat_course_path(@enrollment.course))}"
-      # flash[:notice] = "<a href='#{url_for(chat_course_path(@enrollment.course))}'> Come say hi </a>"
       redirect_to user_enrollments_path(current_user)
     else
       redirect_to course_path(@enrollment.course)
@@ -19,10 +17,6 @@ class EnrollmentsController < ApplicationController
 
   def index
     @enrollments = current_user.enrollments
-      # NotificationChannel.broadcast_to(
-      #   current_user,
-      #   render_to_string(partial: "chat/messages/welcome", locals: { user: current_user })
-      # )
   end
 
   private
