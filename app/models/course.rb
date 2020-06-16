@@ -9,4 +9,12 @@ class Course < ApplicationRecord
   validates :name, presence: true
   validates :category, presence: true
   has_one :chatroom
+
+  def first_module
+    study_modules.first
+  end
+
+  def last_module
+    study_modules.last
+  end
 end
