@@ -1,4 +1,4 @@
-<div class="bg-white p-5 m-3" data-controller="student-quiz">
+<div data-controller="student-quiz">
 <%= simple_form_for [@course, @contentable], url: quiz_answers_path(@contentable.id, format: :json), method: :get, remote: true, data: { target: "student-quiz.form", contentable_id: @contentable.id } do |quiz_builder| %>
   <%= quiz_builder.error_notification %>
   <ol>
