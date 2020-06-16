@@ -7,6 +7,7 @@ module Study
       # redirect_to user_enrollments_path(current_user) unless current_user_enrolled?(@course)
       # 2. redirect_to the course #show
       # redirect_to course_path(@course) unless current_user_enrolled?(@course)
+      redirect_to course_path(@course) unless current_user.enrollments.map(&:course).include?(@course)
       if params[:study_module_id]
         @current_module = @course.study_modules.find(params[:study_module_id])
         @contentable = @current_module.contentable
