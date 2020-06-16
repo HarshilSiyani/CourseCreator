@@ -1,15 +1,41 @@
 <div class="d-flex justify-content-between">
 <h4 class="text-small m-2"><b><%= @course.name %></b></h4>
- <% if current_user == @course.teacher %>
-    <div class="btn-group dropleft">
+  <% if current_user == @course.teacher %>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+      Publish
+    </button>
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Share your Course</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body border border-secondary m-3">
+            <p id="foo"><%= request.original_url %></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button class="copy btn btn-primary" data-clipboard-target="#foo">Copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+
+<!-- Trigger -->
+
+   <!--  <div class="btn-group dropleft">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Share
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="#"><%= request.original_url %></a>
       </div>
-    </div>
-  <% end %>
+    </div> -->
 </div>
 <div class="d-flex mt-3">
   <div id="course-sidebar" class="mr-5">

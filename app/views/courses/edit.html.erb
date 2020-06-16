@@ -22,6 +22,9 @@
     </div>
     <div id="editor" class="flex-grow-1">
       <%= render "#{@contentable.class.table_name}/form", contentable: @contentable, course: @course %>
+
+ <!--      = form_tag({:action => 'create'}, :id => 'subject_form',  :remote => true) do
+  = submit_tag 'Add' -->
     </div>
     <div class="course-description">
     </div>
