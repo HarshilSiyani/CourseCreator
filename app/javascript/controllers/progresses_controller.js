@@ -8,7 +8,7 @@ export default class extends Controller {
   }
 
   checkProgress() {
-    fetch(`/study/progresses/1`, { 
+    fetch(`/study/progresses/${this.getCourseId()}`, { 
       headers: { accept: 'application/json' },
     })
       .then(response => response.json())
