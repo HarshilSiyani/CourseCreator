@@ -1,8 +1,11 @@
 <div class="message-container" id="message-<%= message.id %>">
   <i class="author">
     <span><strong> <%= message.user.nickname %> </strong></span>
-    <small style="color: blue"><%= ((DateTime.now - message.created_at.to_datetime) * 24 * 60).to_i %> mins ago</small>
+    <!-- <small style="color: blue"><%#= ((DateTime.now - message.created_at.to_datetime) * 24 * 60).to_i %> mins ago</small> -->
+    <small style="color: blue"><%= time_ago_in_words(message.created_at.to_datetime) %> ago</small>
+
     <small><%#= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
   </i>
   <p><%= message.content %></p>
+  <hr>
 </div>
