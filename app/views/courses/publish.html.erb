@@ -14,11 +14,11 @@
             </button>
           </div>
           <div class="modal-body border border-secondary m-3">
-            <p id="url"><%= request.original_url %></p>
+            <textarea id="url" readonly><%= request.original_url %></textarea>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button class="btn btn-primary" onclick="copy()">Copy Link</button>
+            <button class="btn btn-primary js-copy">Copy Link</button>
           </div>
         </div>
       </div>

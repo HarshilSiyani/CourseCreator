@@ -32,12 +32,6 @@ import "../components/trix_youtube_plugins";
 import { initChatroomCable } from '../channels/chatroom_channel'
 import { initNotificationCable } from '../channels/notification_channel'
 
-document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  initChatroomCable();
-  initNotificationCable();
-});
-
 function copy() {
   /* Get the text field */
   var copyText = document.getElementById("url");
@@ -52,6 +46,17 @@ function copy() {
   /* Alert the copied text */
   alert("Copied");
 }
+
+document.addEventListener('turbolinks:load', () => {
+  // Call your functions here, e.g:
+  initChatroomCable();
+  initNotificationCable();
+  const copybtnEl = document.querySelector('.js-copy')
+    if(copybtnEl){
+      copybtnEl.addEventListener('click', copy)
+    }
+});
+
 
 const hero = document.querySelector(".hero");
 const slider = document.querySelector(".slider");

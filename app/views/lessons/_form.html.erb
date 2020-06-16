@@ -2,7 +2,7 @@
 <%= simple_form_for [course, contentable] do |form| %>
   <%#= raise %>
   <%= form.simple_fields_for :study_module do |study_module_form| %>
-    <%= study_module_form.input :name %>
+    <%= study_module_form.input :name, label: false %>
   <% end %>
 
   <div class="field"> <%# for Action Text %>
