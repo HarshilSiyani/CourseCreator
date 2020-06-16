@@ -18,5 +18,9 @@
         <a class="dropdown-item"> <%=link_to_unless_current enrollment.course.name, chat_course_path(enrollment.course) %></a>
       <% end %>
     <% end %>
+    <%# If user has no courses %>
+    <% if current_user.enrollments.empty? && current_user.courses.empty?%>
+      No courses!
+    <% end %>
   </div>
 </li>
