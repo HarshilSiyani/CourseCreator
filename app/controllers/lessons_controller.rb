@@ -1,11 +1,6 @@
 class LessonsController < ApplicationController
-  before_action :set_course, only: [:new, :create, :show, :update]
+  before_action :set_course, only: [:create, :show, :update]
 
-  def new
-    # GET    /courses/:course_id/lessons/new
-    @lesson = Lesson.new
-    @lesson.study_module = StudyModule.new
-  end
 
   def create
     # raise

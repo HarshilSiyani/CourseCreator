@@ -14,33 +14,20 @@
             </button>
           </div>
           <div class="modal-body border border-secondary m-3">
-            <p id="foo"><%= request.original_url %></p>
+            <p id="url"><%= request.original_url %></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button class="copy btn btn-primary" data-clipboard-target="#foo">Copy Link</button>
+            <button class="btn btn-primary" onclick="copy()">Copy Link</button>
           </div>
         </div>
       </div>
     </div>
   <% end %>
-
-
-<!-- Trigger -->
-
-   <!--  <div class="btn-group dropleft">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Share
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#"><%= request.original_url %></a>
-      </div>
-    </div> -->
 </div>
 <div class="d-flex mt-3">
   <div id="course-sidebar" class="mr-5">
     <div id="topic-list" class="flex-grow-1 mt-2 mr-1">
-      <h5 class = "m-1">Contents</h5>
       <ol>
         <% @course.study_modules.each do |study_module| %>
           <li class = "p-1">
@@ -51,7 +38,7 @@
             <% end %>
             </li>
         <% end %>
-          <h5 class="mt-4">END OF COURSE </h5>
+          <h5 class="mt-4"><b>END OF COURSE </b></h5>
       </ol>
     </div>
     <!-- <div id="settings">Settings</div> -->
@@ -61,6 +48,7 @@
       <%= render "#{@contentable.class.table_name}/preview_form", contentable: @contentable %>
     </div>
     <div class="course-description">
+    <!--   <%= @course.description %> -->
     </div>
   </div>
 </div>

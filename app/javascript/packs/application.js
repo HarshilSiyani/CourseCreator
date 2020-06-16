@@ -34,6 +34,20 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
 });
 
+function copy() {
+  /* Get the text field */
+  var copyText = document.getElementById("url");
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+  alert("Copied");
+}
 
 const hero = document.querySelector(".hero");
 const slider = document.querySelector(".slider");
@@ -45,7 +59,6 @@ tl.from(hero,1, {height: "0%"}, {height: "80%", ease: Power2.easeInOut})
 .fromTo(hero, 1.2, {width: "100%"}, {width: "80%", ease: Power2.easeInOut})
 .fromTo(slider, 1.2, {x: "-100%"}, {x: "0%", ease: Power2.easeInOut}, "-=1.2");
 
-new ClipboardJS('.copy');
 
 
 
