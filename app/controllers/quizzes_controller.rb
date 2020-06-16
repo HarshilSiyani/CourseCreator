@@ -31,6 +31,20 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.includes(:questions, :answers, :study_module).find(params[:id])
   end
 
+  def answers
+    @quiz = Quiz.find(params[:id])
+    @answers = @quiz.answers
+    # raise
+    # puts params
+    # raise
+    respond_to do |format|
+      # format.json { render json: { correct_answers: @answers, status: :ok }, content_type: 'application/json' }
+      format.json
+      format.html { redirect_to study_course_path(@quiz.study_module.course), notice: "Unathorized accessed!", content_type: 'text/html' }
+      # format.js { render json: { correct_answers: answers, user_answers: user_answers, status: :ok }, content_type: 'application/json' }
+    end
+  end
+
   private
 
   def set_course

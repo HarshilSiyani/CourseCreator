@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_10_012023) do
+ActiveRecord::Schema.define(version: 2020_06_14_232920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,14 @@ ActiveRecord::Schema.define(version: 2020_06_10_012023) do
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.bigint "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_chatrooms_on_course_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "category"
     t.boolean "published"
@@ -80,6 +88,16 @@ ActiveRecord::Schema.define(version: 2020_06_10_012023) do
     t.text "text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -118,15 +136,19 @@ ActiveRecord::Schema.define(version: 2020_06_10_012023) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "first_name"
     t.string "last_name"
+    t.string "nickname"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answers", "questions"
+  add_foreign_key "chatrooms", "courses"
   add_foreign_key "courses", "users", column: "teacher_id"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users", column: "student_id"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "study_modules", "courses"
 end

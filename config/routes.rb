@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :enrollments, only: :create
     resources :study_modules, only: [:new, :create]
     resources :lessons, only: [:new, :create, :show, :edit, :update]
-    resources :quizzes, only: [:new, :create, :show, :edit, :update]
+    resources :quizzes, only: [:new, :create, :show, :update]
     get :publish, on: :member
   end
 
@@ -25,5 +25,15 @@ Rails.application.routes.draw do
     resources :progresses, only: :create
   end
 
+  get '/quizzes/:id/answers', to: 'quizzes#answers', as: :quiz_answers
   resources :youtube, only: :show
+
+  namespace :chat do
+    resources :courses, only: :show do
+    # chat_course GET    /chat/courses/:id          chat/courses#show
+      resources :messages, only: :create
+      # chat_course_messages POST   /chat/courses/:course_id/messages         chat/messages#create
+    end
+  end
 end
+
