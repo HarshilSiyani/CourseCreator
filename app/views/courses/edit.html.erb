@@ -1,30 +1,38 @@
-    <h4 class="text-small m-2 p-2"><b><%= @course.name %></b></h4>
+    <div class="d-flex justify-content-between">
+      <h4 class="text-small m-2 p-2"><b><%= @course.name %></b></h4>
+
+    </div>
     <div class="d-flex mt-3">
-      <div id="course-sidebar" class="bg-white mr-5 pr-2">
+      <div id="course-sidebar">
         <div id="topic-list" class="flex-grow-1 mt-2 mr-1">
-          <h5 class = "m-2">Contents</h5>
-          <ul>
-            <% count = 1 %>
+          <ol>
             <% @course.study_modules.each do |study_module| %>
-            <li class = "mb-1"><%= count %>. <%=link_to_unless_current study_module.name, edit_course_path(@course, study_module_id: study_module.id) %></li>
-            <% count += 1 %>
+            <li class = "m-1">
+              <% if study_module.contentable_type == "Lesson" %>
+              <i class="far fa-file-alt"></i> - <%=link_to_unless_current study_module.name, edit_course_path(@course, study_module_id: study_module.id) %>
+              <% else %>
+              <i class="fas fa-tasks"></i> - <%=link_to_unless_current study_module.name, edit_course_path(@course, study_module_id: study_module.id) %>
+              <% end %>
+            </li>
             <% end %>
-          </ul>
+          </ol>
         </div>
         <div class ="d-flex justify-content-start m-1">
           <%= link_to  "+ Lesson", edit_course_path(@course, lesson: true ), class: "btn btn-primary mr-2", style: "width: 150px;" %>
           <%= link_to  "+ Quiz", edit_course_path(@course, quiz: true), class: "btn btn-primary", style: "width: 150px;" %>
         </div>
       </div>
-      <div class="modules bg-muted d-flex flex-column w-100">
+      <div class="modules bg-muted d-flex flex-column w-100 m-3">
         <% if @lesson %>
-          <%= render "lessons/form", contentable: @lesson, course: @course %>
+        <%= render "lessons/form", contentable: @lesson, course: @course %>
         <% elsif @quiz %>
-          <%= render "quizzes/form", contentable: @quiz, course: @course %>
+        <%= render "quizzes/form", contentable: @quiz, course: @course %>
         <% else %>
-        <div class="editor-menu">
-          <%= link_to  "Publish", publish_course_path(@course, study_module_id: @course.study_modules.first), class: "btn btn-primary" %>
+          <div>
+        <%= link_to  "Preview Course", publish_course_path(@course, study_module_id: @contentable.study_module.id), class: "btn btn-primary" %>
         </div>
+        <%#= link_to "Delete", edit_course_path(@course, study_module_id: @contentable.study_module.id.next ), method: :delete, data: { confirm: "Are you sure?" },
+                  class: "card-link text-muted" %>
         <div id="editor" class="flex-grow-1">
           <%= render "#{@contentable.class.table_name}/form", contentable: @contentable, course: @course %>
         </div>

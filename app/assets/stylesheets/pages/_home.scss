@@ -36,58 +36,17 @@
   overflow-x: hidden;
   overflow-y: auto;
   text-align:justify;
-
 }
-
-.slider{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(to left, #ba7453, #d1a984);
-  z-index: -1;
-}
-section{
-  display: flex;
-  height: 80vh;
-  justify-content: center;
-  align-items: center;
-}
-.hero{
-  height: 100%;
-  width: 100%;
-  position: relative;
-}
-
-.hero::after{
-  content: "";
-  background: black;
-  width: 100%;
-  height: 100%;
-  position:absolute;
-  left:0;
-  top:0;
-  opacity: 0.3;
-}
-
-.hero img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-
-}
-// .headline{
-//   position: absolute;
-//   top: 70%;
-//   left: 10%;
-//   font-size: 100px;
-//   transform: translate(-20%, -70%);
-//   color: white;
-//   z-index: 2;
-// }
-
 
 body{
   background: white;
+}
+
+.lesson{
+  border: none;
+  font-size: 42px;
+}
+
+#url{
+  width: 400px;
 }

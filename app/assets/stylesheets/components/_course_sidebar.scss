@@ -5,5 +5,7 @@
   border-radius: 10px;
   padding-top: 10px;
   box-shadow: 2px 2px 4px darkgrey;
-
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 80vh;
 }
