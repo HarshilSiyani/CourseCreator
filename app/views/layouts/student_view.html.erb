@@ -12,16 +12,9 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
-    <% if current_page? root_path %>
-      <div class='home'>
-    <% else %>
-      <div class="banner">
-    <% end %>
+    <%= render 'shared/student_navbar' %>
       <%= yield %>
       <%= render 'shared/flashes' %>
     </div>
-
-  <script src="dist/clipboard.min.js"></script>
   </body>
 </html>

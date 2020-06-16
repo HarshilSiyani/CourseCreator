@@ -1,26 +1,58 @@
 <div class="d-flex justify-content-between">
 <h4 class="text-small m-2"><b><%= @course.name %></b></h4>
- <div class="btn-group dropleft">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Share
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#"><%= request.original_url %></a>
-  </div>
-</div>
+  <% if current_user == @course.teacher %>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+      Publish
+    </button>
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Share your Course</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body border border-secondary m-3">
+            <p id="foo"><%= request.original_url %></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button class="copy btn btn-primary" data-clipboard-target="#foo">Copy Link</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+
+<!-- Trigger -->
+
+   <!--  <div class="btn-group dropleft">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Share
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#"><%= request.original_url %></a>
+      </div>
+    </div> -->
 </div>
 <div class="d-flex mt-3">
   <div id="course-sidebar" class="mr-5">
     <div id="topic-list" class="flex-grow-1 mt-2 mr-1">
       <h5 class = "m-1">Contents</h5>
-      <ul>
-        <% count = 1 %>
+      <ol>
         <% @course.study_modules.each do |study_module| %>
-          <li class = "p-1"><%= count %>. <%=link_to_unless_current study_module.name, publish_course_path(@course, study_module_id: study_module.id) %></li>
-          <% count += 1 %>
+          <li class = "p-1">
+            <% if study_module.contentable_type == "Lesson" %>
+              <i class="far fa-file-alt"></i> - <%=link_to_unless_current study_module.name, publish_course_path(@course, study_module_id: study_module.id) %>
+            <% else %>
+              <i class="fas fa-tasks"></i> - <%=link_to_unless_current study_module.name, publish_course_path(@course, study_module_id: study_module.id) %>
+            <% end %>
+            </li>
         <% end %>
           <h5 class="mt-4">END OF COURSE </h5>
-      </ul>
+      </ol>
     </div>
     <!-- <div id="settings">Settings</div> -->
   </div>

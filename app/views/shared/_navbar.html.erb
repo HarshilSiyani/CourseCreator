@@ -7,7 +7,6 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
@@ -29,10 +28,10 @@
           <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Teacher", user_courses_path(current_user), class: "nav-link" %>
+          <%= link_to "Teach", user_courses_path(current_user), class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Student", user_enrollments_path(current_user), class: "nav-link" %>
+          <%= link_to "Study", user_enrollments_path(current_user), class: "nav-link" %>
         </li>
         <li class="nav-item">
           <span class="nav-link"><%= current_user&.first_name %></span>
