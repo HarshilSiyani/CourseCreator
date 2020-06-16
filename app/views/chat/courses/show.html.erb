@@ -9,7 +9,7 @@
       </div>
 
       <%# POST   /chat/courses/:course_id/messages         chat/messages#create %>
-      <%= simple_form_for [@message], method: :post, url: chat_course_messages_path(@course) do |f| %>
+      <%= simple_form_for [@message], method: :post, url: chat_course_messages_path(@course), remote: true do |f| %>
         <%= f.input :content, label: false, placeholder: "Message ##{@course.name}" %>
         <%= f.button :submit, class: "btn btn-primary" %>
       <% end %>
