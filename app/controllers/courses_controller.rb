@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+layout :student_layout
+
   skip_before_action :authenticate_user!, only: :index
   before_action :set_course, only: [:edit, :update, :publish]
 
@@ -34,11 +36,24 @@ class CoursesController < ApplicationController
 
   def edit
     # raise
+    if params[:lesson] == "true"
+      @lesson = Lesson.new
+      @lesson.study_module = StudyModule.new
+    elsif params[:quiz] == "true"
+      @quiz = Quiz.new
+      @quiz.study_module = StudyModule.new
+    else
     @contentable = @course.study_modules.find(params[:study_module_id]).contentable
+    end
   end
 
   def publish
-    @contentable = @course.study_modules.find(params[:study_module_id]).contentable
+
+
+    study_module = @course.study_modules.find(params[:study_module_id])
+
+    redirect_to course_path(@course) unless current_user == @course.teacher || current_user.enrollments.map(&:course).include?(@course)
+    @contentable = study_module.contentable
   end
 
   private
@@ -62,5 +77,9 @@ class CoursesController < ApplicationController
     )
     lesson.content.body = "Welcome to #{course.name}!"
     return lesson
+  end
+
+  def student_layout
+    current_user.enrollments.size.positive? && current_user.enrollments.map(&:course).include?(@course) ? "student_view" : "application"
   end
 end

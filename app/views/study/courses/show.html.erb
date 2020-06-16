@@ -20,12 +20,13 @@
         <% @course.study_modules.each do |study_module| %>
           <li class = "p-1">
             <span class="fa-li"></span>
-            <%= link_to_unless_current "#{study_module.index}. #{study_module.name}", study_course_path(@course, study_module_id: study_module.id) %>
+            <%= link_to_if (study_module.index <= @enrollment.module_index || request.fullpath == study_course_path(@course, study_module_id: study_module.id)), "#{study_module.index}. #{study_module.name}", study_course_path(@course, study_module_id: study_module.id)  %>
+            <%#= link_to_unless_current "#{study_module.index}. #{study_module.name}", study_course_path(@course, study_module_id: study_module.id) %>
+            <%= icon("fas", "list-alt") if study_module.contentable_type == Quiz.to_s  %>
           </li>
         <% end %>
       </ol>
     </div>
-    <!-- <div id="settings">Settings</div> -->
   </div>
   <div class="modules bg-muted w-100">
     <%= render partial: '/study/progresses/show', locals: { course: @course } %>
@@ -34,3 +35,5 @@
     </div>
   </div>
 </div>
+
+<%= link_to "Q&A", chat_course_path(@course) %>

@@ -2,16 +2,15 @@
 <%= simple_form_for [course, contentable] do |form| %>
   <%#= raise %>
   <%= form.simple_fields_for :study_module do |study_module_form| %>
-    <%= study_module_form.input :name %>
+    <%= study_module_form.input :name, label: false %>
   <% end %>
 
   <div class="field"> <%# for Action Text %>
-    <%= form.label :content %>
     <%= form.rich_text_area :content, class: "editor" %>
 
     <div class="form-actions my-4 d-flex justify-content-between">
       <%= form.button :submit, class: "btn btn-info w-100 mr-3" %>
-      <%= form.submit "Preview", class: "btn btn-info w-100" %>
+      <%#= form.submit "Preview", class: "btn btn-info w-100" %>
     </div>
   </div>
 <% end %>

@@ -31,7 +31,7 @@ export default class extends Controller {
       question_id: parseInt(answer.dataset.questionId) 
     } )
     const correctAnswers = this.convertArrayToObject(data["answers"], "id");
-    // console.log(correctAnswers);
+
     // Reset form before begin
     this.resetForm();
 
@@ -57,11 +57,11 @@ export default class extends Controller {
 
   letUserProceed() {
     // console.log("User can proceed");
-    // console.log(document.querySelectorAll(".module-nav-right"));
     const navBtns = document.querySelectorAll(".module-nav-right");
-    // console.log(navBtns);
-    navBtns[0].style.display = "none";
-    navBtns[1].style.display = "inline";
+    if (navBtns) {
+      navBtns[0].style.display = "none";
+      navBtns[1].style.display = "inline";
+    }
   }
 
   resetForm() {

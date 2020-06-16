@@ -1,16 +1,20 @@
-<div class="container">
-  <h1>#<%= @course.name %></h1>
-  <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
-    <% @chatroom.messages.each do |message| %>
-      <%= render "chat/messages/message", message: message %>
-    <% end %>
+<div class="row">
+  <div class="col-12 col-lg-8 mx-auto">
+    <div class="card p-4">
+      <h1>#<%= @course.name %></h1>
+      <div id="messages" data-chatroom-id="<%= @chatroom.id %>" class="chatroom">
+        <% @chatroom.messages.each do |message| %>
+          <%= render "chat/messages/message", message: message %>
+        <% end %>
+      </div>
+
+      <%# POST   /chat/courses/:course_id/messages         chat/messages#create %>
+      <%= simple_form_for [@message], method: :post, url: chat_course_messages_path(@course) do |f| %>
+        <%= f.input :content, label: false, placeholder: "Message ##{@course.name}" %>
+        <%= f.button :submit, class: "btn btn-primary" %>
+      <% end %>
+
+      <%= link_to "Back to Course", study_course_path(@course) %>
+    </div>
   </div>
-
-  <%# POST   /chat/courses/:course_id/messages         chat/messages#create %>
-  <%= simple_form_for [@message], method: :post, url: chat_course_messages_path(@course) do |f| %>
-    <%= f.input :content, label: false, placeholder: "Message ##{@course.id}" %>
-    <%= f.button :submit, class: "btn btn-primary" %>
-  <% end %>
 </div>
-
-

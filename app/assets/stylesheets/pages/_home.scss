@@ -7,12 +7,12 @@
 
 .editor{
   background-color: white;
-  width: 60vw;
   height: 50vh;
   padding: 30px;
   overflow-x: hidden;
   overflow-y: auto;
   text-align:justify;
+  border: none;
 }
 
 .desc{
@@ -36,6 +36,37 @@
   overflow-x: hidden;
   overflow-y: auto;
   text-align:justify;
-
 }
 
+body{
+  background: white;
+}
+
+.lesson{
+  border: none;
+  font-size: 42px;
+}
+
+#url{
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: darkgrey;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: grey;
+}
+
+// .title{
+//   border: none;
+//   background: blue;
+// }
