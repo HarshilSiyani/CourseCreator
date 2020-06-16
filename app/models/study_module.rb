@@ -25,6 +25,8 @@ class StudyModule < ApplicationRecord
   private
 
   def set_next_id
-    self.index = course.last_module.index + 1
+    if course.last_module
+      self.index = course.last_module.index + 1
+    end
   end
 end
