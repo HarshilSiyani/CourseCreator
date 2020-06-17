@@ -5,6 +5,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
+
+          <%= render "shared/navbar_notification", current_user: current_user %>
+          <%= render "shared/navbar_chatrooms", current_user: current_user %>
+
           <li class="nav-item">
           <span class="nav-link"><%= current_user&.first_name %></span>
         </li>
