@@ -35,6 +35,7 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'simple_token_authentication'
 gem 'turbolinks_render'
+gem 'cloudinary', '~> 1.12.0'
 
 group :development, :test do
   gem 'pry-byebug'
