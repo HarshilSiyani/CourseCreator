@@ -29,7 +29,7 @@
   </div>
   <div class="col-md-8 col-lg-9">
     <div class="study-course-content">
-      <div class="sticky-top" style="background: #fff;">
+      <div class="sticky-top" style="background: #fff; z-index: 999;">
         <div class="d-flex justify-content-between align-items-center">
           <div>
             <% previous_module_id = @current_module.previous_module.nil? ? @course.first_module.id : @current_module.previous_module.id %>
