@@ -1,5 +1,6 @@
 module Study
   class CoursesController < ApplicationController
+    layout "student_view"
     def show
       @course = Course.find(params[:id])
       redirect_to course_path(@course) and return unless current_user_enrolled?(@course)
