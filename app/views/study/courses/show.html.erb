@@ -9,6 +9,7 @@
     <% next_module_id = @current_module.next_module.nil? ? @course.last_module.id : @current_module.next_module.id %>
     <%= icon("fas", "angle-right", class: "fa-lg module-nav-right", style: "display: #{@quiz_passed ? "none" : "inline" };" ) %>
     <%= link_to_unless_current icon("fas", "angle-right", class: "fa-lg"), study_course_path(@course, study_module_id: next_module_id), class: "module-nav-right", style: "display: #{@quiz_passed ? "inline" : "none" };" %>
+    <%# raise %>
   </div>
 </div>
 

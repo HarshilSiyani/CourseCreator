@@ -1,7 +1,7 @@
 <%# POST   /courses/:course_id/lessons %>
 <%= simple_form_for [course, contentable] do |form| %>
   <%#= raise %>
-  <%= form.simple_fields_for :study_module do |study_module_form| %>
+  <%= form.simple_fields_for :study_module, html: { novalidate: true } do |study_module_form| %>
     <%= study_module_form.input :name, label: false %>
   <% end %>
 
