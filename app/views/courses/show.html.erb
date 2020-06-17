@@ -18,12 +18,14 @@
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email</th>
+      <th>Progress</th>
     </tr>
       <% @course.enrollments.each do |enrolled| %>
-      <tr>
+      <tr class="mt-1">
         <td><%= enrolled.student.first_name %></td>
         <td><%= enrolled.student.last_name %></td>
         <td><%= enrolled.student.email %></td>
+        <td><%= render partial: '/study/progresses/teacher_show', locals: { course: @course, current: ((enrolled.module_index/@total_modules) * 100)} %></td>
       </tr>
     <% end %>
     </table>
