@@ -9,7 +9,7 @@
   border: 3px solid white;
 }
 
-.student_show{
+.student_show {
   background: #606870;
   border-radius: 5px;
   padding-top: 10px;
@@ -17,15 +17,10 @@
   overflow-x: hidden;
   overflow-y: auto;
   max-height: 80vh;
-  color: white;
-  border: 3px solid white;
-a
-{
   color: #8d969e;
-}
-
-a:visited {
-  color: #ffffff;
-}
+  border: 3px solid white;
+  a {
+    color: #ffffff;
+  }
 }
 
