@@ -11,6 +11,8 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
+        <%# Notification bell %>
+        <%= render "shared/navbar_notification", current_user: current_user %>
         <li class="nav-item active">
           <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
@@ -19,6 +21,12 @@
         </li>
         <li class="nav-item">
           <%= link_to "Study", user_enrollments_path(current_user), class: "nav-link" %>
+        </li>
+            <%# Messages %>
+        <%= render "shared/navbar_chatrooms", current_user: current_user %>
+
+        <li class="nav-item">
+          <span class="nav-link"><%= current_user&.first_name %></span>
         </li>
         <li class="nav-item dropdown">
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
