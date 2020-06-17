@@ -10,7 +10,7 @@ export default class extends Controller {
   checkAnswers(event) {
     event.preventDefault();
     const quizId = this.getQuizId();
-    fetch(`/quizzes/${quizId}/answers`, { 
+    fetch(`/quizzes/${quizId}/answers`, {
       headers: { accept: 'application/json' },
     })
       .then(response => response.json())
@@ -24,11 +24,11 @@ export default class extends Controller {
       return;
     }
 
-    const checkboxes = this.formTarget.querySelectorAll("input[type='checkbox']")
-    const userChoices = Array.from(checkboxes, answer => answer = { 
+    const checkboxes = this.formTarget.querySelectorAll("input[type='radio']")
+    const userChoices = Array.from(checkboxes, answer => answer = {
       id: parseInt(answer.value),
-      checked: answer.checked, 
-      question_id: parseInt(answer.dataset.questionId) 
+      checked: answer.checked,
+      question_id: parseInt(answer.dataset.questionId)
     } )
     const correctAnswers = this.convertArrayToObject(data["answers"], "id");
 
