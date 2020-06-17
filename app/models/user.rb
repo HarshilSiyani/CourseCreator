@@ -9,6 +9,8 @@ class User < ApplicationRecord
   after_create :create_default_course
   has_one_attached :photo
 
+  validates :nickname, presence: true, uniqueness: true
+
   def full_name
     "#{first_name} #{last_name}".strip
   end
