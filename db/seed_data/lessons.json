@@ -1,7 +1,7 @@
 [
   {
     "text": "Introduction to Ruby",
-    "content": "There should be something inside here. It cannot be blank"
+    "content": "<div class=\"trix-content\">\n  <div><strong>Intro</strong></div><ul>\n<li>Build an iOS app</li>\n<li>Provide service to customers</li>\n<li>Build a platform</li>\n<li>etc.</li>\n</ul><div><strong>No big deal</strong></div><div>It’s just a new set of <strong>Controllers</strong>…</div><div>…which return <strong>JSON</strong> instead of HTML (the .html.erb views).</div>\n</div>\n"
   },
   {
     "text": "Control Flow in Ruby",

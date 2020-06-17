@@ -82,10 +82,10 @@ course_ruby = Course.find_by(name: "Learn Ruby Basics")
 
 lessons.each_with_index do |lesson, index|
   record = Lesson.new(text: lesson["text"])
-  record.content.body = lesson["content"]
+  record.content.body = lesson["content"].html_safe
   record.study_module = StudyModule.new(
     course: course_ruby,
-    index: index,
+    index: index + 1,
     name: lesson["text"]
   )
   record.save!
