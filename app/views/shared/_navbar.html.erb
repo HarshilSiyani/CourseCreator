@@ -7,12 +7,12 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
+
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <%# Notification bell %>
         <%= render "shared/navbar_notification", current_user: current_user %>
-
         <li class="nav-item active">
           <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
@@ -22,8 +22,7 @@
         <li class="nav-item">
           <%= link_to "Study", user_enrollments_path(current_user), class: "nav-link" %>
         </li>
-
-        <%# Messages %>
+            <%# Messages %>
         <%= render "shared/navbar_chatrooms", current_user: current_user %>
 
         <li class="nav-item">
@@ -32,6 +31,7 @@
         <li class="nav-item dropdown">
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "Profile", "#", class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>

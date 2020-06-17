@@ -28,6 +28,7 @@ layout :student_layout
 
   def show
     @course = Course.find(params[:id])
+    @total_modules = @course.study_modules.count.to_f
   end
 
   def index
