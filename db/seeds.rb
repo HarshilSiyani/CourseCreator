@@ -53,6 +53,8 @@ JSON.parse(course_file).each do |record|
     lesson.save!
 
     courses << course
+
+    Chatroom.create(course: course)
   end
 end
 puts "...finished seeding Courses"
