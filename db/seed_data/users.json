@@ -4,41 +4,47 @@
     "first_name": "Erik",
     "last_name": "Tran",
     "password": "abc123",
-    "email": "erik@study.com"
+    "email": "erik@study.com",
+    "nickname": "erikT"
   },
   {
     "role": "teacher",
     "first_name": "Harshil",
     "last_name": "Siyani",
     "password": "abc123",
-    "email": "harshil@study.com"
+    "email": "harshil@study.com",
+    "nickname": "HS"
   },
   {
     "role": "teacher",
     "first_name": "Zachary",
     "last_name": "Chung",
     "password": "abc123",
-    "email": "zach@study.com"
+    "email": "zach@study.com",
+    "nickname": "zachchung"
   },
   {
     "role": "student",
     "first_name": "Lisa",
     "last_name": "Huang",
     "password": "abc123",
-    "email": "lisa@study.com"
+    "email": "lisa@study.com",
+    "nickname": "lisaaaa"
   },
   {
     "role": "student",
     "first_name": "Sheila",
     "last_name": "Leveille",
     "password": "abc123",
-    "email": "sheila@study.com"
+    "email": "sheila@study.com",
+    "nickname": "sheila"
   },
   {
     "role": "student",
     "first_name": "Sy",
     "last_name": "Rashid",
     "password": "abc123",
-    "email": "sy@study.com"
+    "email": "sy@study.com",
+    "nickname": "syyyy"
   }
 ]
