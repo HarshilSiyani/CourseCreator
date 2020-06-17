@@ -37,7 +37,7 @@ JSON.parse(course_file).each do |record|
     description: record["description"].join(" "),
     category: record["category"],
     published: record["published"],
-    teacher: teachers.sample
+    teacher: teachers[1]
   })
 
 
@@ -61,7 +61,7 @@ puts "...finished seeding Courses"
 
 
 puts "Seeding Enrollments..."
-rand(1..3).times do
+2.times do
   student = students.sample
   available_courses = Course.ids - student.enrollment_ids.map{ |id| Enrollment.find(id).course_id }
   enrol = Enrollment.new({

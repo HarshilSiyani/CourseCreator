@@ -7,6 +7,12 @@
   overflow-y: auto;
   max-height: 80vh;
   border: 3px solid white;
+  a {
+    color: white !important;
+  }
+  a:visited {
+    color: #8d969e;
+  }
 }
 
 .student_show {
