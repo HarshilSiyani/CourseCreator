@@ -7,8 +7,8 @@
       <li>
         <%= question_builder.label question.text %>
         <ul class="fa-ul">
-          <%= question_builder.collection_check_boxes :answers, question.answers, :id, :text, item_wrapper_tag: :li do |answer_builder| %>
-          <%= answer_builder.label { answer_builder.check_box("data-question-id": question.id, class: "mr-1") + answer_builder.text } %>
+          <%= question_builder.collection_radio_buttons :answers, question.answers, :id, :text, item_wrapper_tag: :li do |answer_builder| %>
+          <%= answer_builder.label { answer_builder.radio_button("data-question-id": question.id, class: "mr-1") + answer_builder.text } %>
           <% end %>
         </ul>
       </li>

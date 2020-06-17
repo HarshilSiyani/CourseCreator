@@ -10,7 +10,7 @@ class LessonsController < ApplicationController
     if @lesson.save
       redirect_to edit_course_path(@course, study_module_id: @lesson.study_module.id)
     else
-      render :new
+      redirect_to edit_course_path(@course, lesson: true), notice: "Content cannot be empty"
     end
   end
 
