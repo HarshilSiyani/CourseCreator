@@ -12,5 +12,12 @@ module Study
         end
       end
     end
+
+    def teacher_show
+      @course = Course.find(params[:course_id])
+      @current_module = @course.enrollments.find_by(course: @course).module_index
+      @total_modules = @course.study_modules.count
+      @current = ((@current_module / @total_modules) * 100)
+    end
   end
 end
