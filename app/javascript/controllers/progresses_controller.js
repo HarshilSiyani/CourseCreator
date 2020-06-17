@@ -14,7 +14,7 @@ export default class extends Controller {
       .then(response => response.json())
       .then((data) => {
         this.updateProgressBar(data);
-        this.updateCourseList(data);
+        // this.updateCourseList(data);
       });
   }
 
@@ -30,14 +30,14 @@ export default class extends Controller {
     bar.ariaValueNow = percentage;
   }
 
-  updateCourseList(data) {
-    // console.log(data);
-    const currentModule = data["current_index"];
-    const icons = this.listTarget.querySelectorAll("span.fa-li")
-    icons.forEach((icon, index) => {
-      if (currentModule <= (index + 1)) icons[index].innerHTML = `<i class="fas fa-square text-white"></i>`;
-      if (currentModule >= (index + 1)) icons[index].innerHTML = `<i class="far fa-check-square text-body"></i>`;
-    })
-  }
+  // updateCourseList(data) {
+  //   // console.log(data);
+  //   const currentModule = data["current_index"];
+  //   const icons = this.listTarget.querySelectorAll("span.fa-li")
+  //   icons.forEach((icon, index) => {
+  //     if (currentModule <= (index + 1)) icons[index].innerHTML = `<i class="fas fa-square text-white"></i>`;
+  //     if (currentModule >= (index + 1)) icons[index].innerHTML = `<i class="far fa-check-square text-body"></i>`;
+  //   })
+  // }
 
 }

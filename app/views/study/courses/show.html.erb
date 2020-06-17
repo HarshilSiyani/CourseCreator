@@ -17,12 +17,21 @@
     <div id="topic-list" class="flex-grow-1 mt-2 mr-1">
       <h5 class = "m-1"><%= @course.name %></h5>
       <ol class="fa-ul" data-target="progresses.list">
-        <% @course.study_modules.each do |study_module| %>
+        <% @course.study_modules.each_with_index do |study_module, index| %>
           <li class = "p-1">
-            <span class="fa-li"></span>
-            <%= link_to_if (study_module.index <= @enrollment.module_index || request.fullpath == study_course_path(@course, study_module_id: study_module.id)), "#{study_module.index}. #{study_module.name}", study_course_path(@course, study_module_id: study_module.id)  %>
-            <%#= link_to_unless_current "#{study_module.index}. #{study_module.name}", study_course_path(@course, study_module_id: study_module.id) %>
-            <%= icon("fas", "list-alt") if study_module.contentable_type == Quiz.to_s  %>
+            <span class="fa-li">
+            <%= if @enrollment.module_index >= study_module.index
+                  icon("fas", "check-square", class: "text-body")
+                elsif study_module.contentable_type == Lesson.to_s
+                  icon("fas", "square", class: "text-white")
+                elsif study_module.contentable_type == Quiz.to_s
+                  icon("fas", "stream", class: "text-white")
+                end
+            %>
+            </span>
+            <%= link_to_if (study_module.index <= @enrollment.module_index && request.fullpath != study_course_path(@course, study_module_id: study_module.id)), 
+                          "#{index + 1}. #{study_module.name}", study_course_path(@course, study_module_id: study_module.id)  
+            %>
           </li>
         <% end %>
       </ol>

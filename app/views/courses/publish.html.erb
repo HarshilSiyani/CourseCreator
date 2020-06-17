@@ -32,17 +32,20 @@
 <div class="d-flex mt-3">
   <div id="course-sidebar">
     <div id="topic-list" class="flex-grow-1 mt-2 mr-1">
-      <ol>
-        <% @course.study_modules.each do |study_module| %>
+      <ol class="fa-ul">
+        <% @course.study_modules.each_with_index do |study_module, index| %>
           <li class = "m-1">
-            <% if study_module.contentable_type == "Lesson" %>
-              <i class="far fa-file-alt"></i> - <%=link_to_unless_current study_module.name, publish_course_path(@course, study_module_id: study_module.id) %>
-            <% else %>
-              <i class="fas fa-tasks"></i> - <%=link_to_unless_current study_module.name, publish_course_path(@course, study_module_id: study_module.id) %>
-            <% end %>
-            </li>
+            <span class="fa-li">
+            <%= if study_module.contentable_type == Lesson.to_s
+                icon("fas", "square", class: "text-white")
+              elsif study_module.contentable_type == Quiz.to_s
+                icon("fas", "stream", class: "text-white")
+              end
+            %>
+            </span>
+            <%=link_to_unless_current "#{index + 1}. #{study_module.name}", publish_course_path(@course, study_module_id: study_module.id) %>
+          </li>
         <% end %>
-          <h5 class="mt-4"><b>END OF COURSE </b></h5>
       </ol>
     </div>
     <!-- <div id="settings">Settings</div> -->
@@ -56,7 +59,3 @@
     </div>
   </div>
 </div>
-
-
-<%= link_to "Q&A", chat_course_path(@course) %>
-
