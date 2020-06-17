@@ -3,3 +3,19 @@
 //   bottom: 0;
 // }
 
+trix-toolbar{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: white;
+  z-index: 10;
+}
+
+.edit_lesson{
+  position: relative;
+  background: white;
+  .form-control{
+    border: none !important;
+    border-bottom: 1px solid #eee !important;
+  }
+}
