@@ -18,9 +18,9 @@
     <% end %>
     <%# If user has no courses %>
     <% if current_user.student? && current_user.enrollments.empty? %>
-      No enrollment!
+      <div class="p-2">No enrollment!</div>
     <% elsif current_user.teacher? && current_user.courses.empty?%>
-      No course!
+      <div class="p-2">No course!</div>
     <% end %>
   </div>
 </li>
