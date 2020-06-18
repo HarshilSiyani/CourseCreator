@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col-12 col-lg-8 mx-auto">
-    <div class="card p-4">
+  <div class="col-12 col-md-9 col-lg-6 mx-auto">
+    <div class="card p-4" style="box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2)">
       <h1>#<%= @course.name %></h1>
       <div id="messages" data-chatroom-id="<%= @chatroom.id %>" class="chatroom">
         <% @chatroom.messages.each do |message| %>
@@ -10,11 +10,19 @@
 
       <%# POST   /chat/courses/:course_id/messages         chat/messages#create %>
       <%= simple_form_for [@message], method: :post, url: chat_course_messages_path(@course), remote: true do |f| %>
-        <%= f.input :content, label: false, placeholder: "Message ##{@course.name}" %>
-        <%= f.button :submit, class: "btn btn-primary" %>
+        <div class="d-flex mb-4" style="height:2.5rem">
+          <%= f.input :content, label: false, placeholder: "Message ##{@course.name}", wrapper_html: {class: "flex-grow-1"} %>
+          <%= button_tag do %>
+            <i class='fas fa-paper-plane'></i>
+          <% end %>
+        </div>
       <% end %>
 
-      <%= link_to "Back to Course", study_course_path(@course) %>
+      <%= link_to "Back to Course", study_course_path(@course), class: "btn btn-outline-dark " %>
     </div>
   </div>
 </div>
+
+<!-- <i class="fas fa-paper-plane"></i> -->
+          <%#= f.button :submit, class: "fas fa-paper-plane" %>
+          <%#= f.button :submit do %>

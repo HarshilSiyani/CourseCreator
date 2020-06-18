@@ -128,7 +128,7 @@ z = User.create!(
 
 puts "AC course...."
 c = Course.create!(
-  name: "WebSocket & ActionCable",
+  name: "ActionCable",
   category: "Information Technology",
   description: "Sometimes, web applications need real-time features. ActionCable can solve this issue and make your app sharp!",
   published: false,
