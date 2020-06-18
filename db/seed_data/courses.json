@@ -8,7 +8,7 @@
   },
   {
     "id": 2,
-    "name": "Learn Ruby Basics",
+    "name": "Ruby Basics",
     "category": "Information Technology",
     "published": false,
     "description": [
@@ -19,21 +19,21 @@
   },
   {
     "id": 3,
-    "name": "Learn HTML and CSS Basics",
+    "name": "HTML and CSS Basics",
     "category": "Information Technology",
     "published": false,
     "description": ["In this Course Students will be able to learn a Complete HTML & CSS Course taking them From Novice To Professional"]
   },
   {
     "id": 4,
-    "name": "Learn JavaScript",
+    "name": "JavaScript",
     "category": "Information Technology",
     "published": false,
     "description": ["Master JavaScript with the most complete course! Projects, challenges, quizzes, JavaScript ES6+, OOP, AJAX, Webpack"]
   },
   {
     "id": 5,
-    "name": "Learn Git Basics",
+    "name": "Git Basics",
     "category": "Information Technology",
     "published": false,
     "description": ["Learn the basics of Git through detailed and easy to follow along screencasts. Start using Git today!"]
