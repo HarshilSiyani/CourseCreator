@@ -19,7 +19,8 @@ user_data.each do |record|
     first_name: record["first_name"],
     last_name: record["last_name"],
     email: record["email"],
-    nickname: record["nickname"]
+    nickname: record["nickname"],
+    role: record["role"]
   })
   user.password = record["password"]
   if user.save!
