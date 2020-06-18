@@ -1,35 +1,39 @@
 <div data-controller="progresses" >
 
-<div class="row mt-5">
-  <div class="col-md-4 col-lg-3">
-    <div class="student_show sticky-top">
-      <div id="topic-list" class="flex-grow-1 mt-2 mr-1">
-        <h6 class = "px-3 text-white">MODULES</h6>
-        <ol class="fa-ul">
-          <% @course.study_modules.each_with_index do |study_module, index| %>
-          <li class = "p-1">
-            <span class="fa-li">
-              <%= if @enrollment.module_index >= study_module.index
-                icon("fas", "check-square", class: "text-white")
-              elsif study_module.contentable_type == Lesson.to_s
-                icon("fas", "square", class: "text-secondary")
-              elsif study_module.contentable_type == Quiz.to_s
-                icon("fas", "stream", class: "text-secondary")
-              end
+  <div class="row mt-5">
+    <div class="col-md-4 col-lg-3" id="sidebar">
+      <div class="student_show sticky-top">
+        <div id="topic-list" class="flex-grow-1 mt-2 mr-1">
+          <h6 class = "px-3 text-white sidebar-header">MODULES</h6>
+          <ol class="fa-ul">
+            <% @course.study_modules.each_with_index do |study_module, index| %>
+            <li class = "p-1">
+              <span class="fa-li">
+                <%= if @enrollment.module_index >= study_module.index
+                  icon("fas", "check-square", class: "text-white")
+                elsif study_module.contentable_type == Lesson.to_s
+                  icon("fas", "square", class: "text-secondary")
+                elsif study_module.contentable_type == Quiz.to_s
+                  icon("fas", "stream", class: "text-secondary")
+                end
+                %>
+              </span>
+              <%= link_to_if (study_module.index <= @enrollment.module_index && request.fullpath != study_course_path(@course, study_module_id: study_module.id)),
+              "#{index + 1}. #{study_module.name}", study_course_path(@course, study_module_id: study_module.id)
               %>
-            </span>
-            <%= link_to_if (study_module.index <= @enrollment.module_index && request.fullpath != study_course_path(@course, study_module_id: study_module.id)),
-            "#{index + 1}. #{study_module.name}", study_course_path(@course, study_module_id: study_module.id)
-            %>
-          </li>
-          <% end %>
-        </ol>
+            </li>
+            <% end %>
+          </ol>
+        </div>
       </div>
+
     </div>
-  </div>
-  <div class="col-md-8 col-lg-9">
-    <div class="study-course-content">
-      <div class="sticky-top" style="background: #fff;">
+    <div class="col-md-8 col-lg-9">
+      <div class="study-course-content">
+        <div class="sticky-top" style="background: #fff;">
+      <!--    <button type="button" id="sidebarCollapse" class="btn btn-secondary">
+          <i class="fas fa-align-left"></i>
+        </button> -->
         <div class="d-flex justify-content-between align-items-center">
           <div>
             <% previous_module_id = @current_module.previous_module.nil? ? @course.first_module.id : @current_module.previous_module.id %>
@@ -42,7 +46,7 @@
             <%= link_to_unless_current "Next #{icon("fas", "angle-right", class: "fa-lg")}".html_safe, study_course_path(@course, study_module_id: next_module_id), class: "module-nav-right btn text-secondary border", style: "display: #{@quiz_passed ? "inline" : "none" };" %>
           </div>
         </div>
-          <%= render partial: '/study/progresses/show', locals: { course: @course } %>
+        <%= render partial: '/study/progresses/show', locals: { course: @course } %>
       </div>
       <div class="modules bg-muted w-100">
         <div class="preview h-100">
