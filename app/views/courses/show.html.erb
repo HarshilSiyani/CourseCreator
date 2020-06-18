@@ -1,33 +1,39 @@
-<h1>Your Courses</h1>
-<div class = "card m-5 p-3">
-  <h3><b><%= @course.name %></b></h3>
-  <li><%= @course.category %></li>
-  <p><%= @course.description %></p>
-  <% if current_user != @course.teacher %>
-    <%= link_to "Enroll",  course_enrollments_path(@course), method: :post %>
-  <% else %>
-    <div><%= link_to "Contents", edit_course_path(@course, study_module_id: @course.study_modules.first.id), class: "text-info" %></div>
-  <% end %>
+<div class = "d-flex justify-content-between align-items-center mx-3 my-5">
+  <div>
+    <h2 class="m-2"><%= @course.name %></h2>
+  </div>
 </div>
 
-<% if current_user == @course.teacher %>
-  <div class = "card m-5 p-3">
+<div class = "card mx-3 my-5 p-3">
+  <p>Category: <%= @course.category %></p>
+  <p><%= @course.description %></p>
+  <%= if (@is_teacher)
+    link_to_unless (@is_teacher && current_user.enrollments.map(&:course).include?(@course)), "Enroll", course_enrollments_path(@course), method: :post, class: "btn btn-primary" do
+      link_to "Study", study_course_path(@course), class: "btn btn-primary "
+    end
+  elsif (@is_my_course)
+    link_to "Edit", edit_course_path(@course, study_module_id: @course.study_modules.first), class: "btn btn-primary"
+  end%>
+</div>
+
+<% if (@is_my_course) %>
+  <div class = "card mx-3 my-5 p-3">
     <h3>Students</h3>
     <table>
-      <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Progress</th>
-    </tr>
+      <thead>
+        <th>Student</th>
+        <th>Email</th>
+        <th>Progress</th>
+      </thead>
+      <tbody>
       <% @course.enrollments.each do |enrolled| %>
-      <tr class="mt-1">
-        <td><%= enrolled.student.first_name %></td>
-        <td><%= enrolled.student.last_name %></td>
-        <td><%= enrolled.student.email %></td>
-        <td><%= render partial: '/study/progresses/teacher_show', locals: { course: @course, current: ((enrolled.module_index/@total_modules) * 100)} %></td>
-      </tr>
-    <% end %>
+        <tr class="mt-1">
+          <td><%= enrolled.student.full_name %></td>
+          <td><%= enrolled.student.email %></td>
+          <td><%= render partial: '/study/progresses/teacher_show', locals: { course: @course, current: ((enrolled.module_index/@total_modules) * 100)} %></td>
+        </tr>
+      <% end %>
+      </tbody>
     </table>
   </div>
 <% end %>

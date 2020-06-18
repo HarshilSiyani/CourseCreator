@@ -3,19 +3,20 @@
     Messages
   </a>
   <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
-    <%# List user's courses & link to the chatroom %>
-    <% if !current_user.courses.empty? %>
+    <%# List user's courses & link to the chatroom %>    
+    <% if !current_user.courses.empty? && role == "teacher" %>
       <strong style="text-decoration: underline"> Courses </strong>
       <% current_user.courses.each do |course| %>
-        <a class="dropdown-item"> <%=link_to_unless_current course.name, chat_course_path(course) %></a>
+        <%=link_to_unless_current course.name, chat_course_path(course), class: "dropdown-item" %>
       <% end %>
       <hr>
     <% end %>
+    
     <%# List user's enrollments & link to the chatroom %>
-    <% if !current_user.enrollments.empty? %>
+    <% if !current_user.enrollments.empty? && role == "student" %>
       <strong style="text-decoration: underline"> Enrollments </strong>
       <% current_user.enrollments.each do |enrollment| %>
-        <a class="dropdown-item"> <%=link_to_unless_current enrollment.course.name, chat_course_path(enrollment.course) %></a>
+        <%= link_to enrollment.course.name, chat_course_path(enrollment.course), class: "dropdown-item" %>
       <% end %>
     <% end %>
     <%# If user has no courses %>

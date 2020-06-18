@@ -1,8 +1,8 @@
-<div class="d-flex justify-content-between">
-  <h4 class="text-small m-2"><b><%= @course.name %></b></h4>
+<div class="d-flex justify-content-between align-items-center my-5">
+  <h2 class="m-2"><b><%= @course.name %></b></h2>
   <% if current_user == @course.teacher %>
   <div class="d-flex justify-content-end">
-    <button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#staticBackdrop">
+    <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#staticBackdrop">
       Share
     </button>
     <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -25,7 +25,7 @@
 
       </div>
     </div>
-    <%= link_to "Edit course", edit_course_path(@course, study_module_id: @course.study_module_ids.first), class: "btn btn-primary m-2" %>
+    <%= link_to "Edit course", edit_course_path(@course, study_module_id: @course.study_module_ids.first), class: "btn btn-primary" %>
   </div>
   <% end %>
 </div>
@@ -33,28 +33,28 @@
   <div class="col-md-4 col-lg-3">
     <div id="course-sidebar">
       <div id="topic-list" class="flex-grow-1 mt-2 mr-1">
-        <ol class="fa-ul">
+        <ul class="fa-ul">
           <% @course.study_modules.each_with_index do |study_module, index| %>
-          <li class = "m-1">
-            <span class="fa-li">
-              <%= if study_module.contentable_type == Lesson.to_s
+          <li class="m-1">
+            <%# <span class="fa-li"> %>
+              <%#= if study_module.contentable_type == Lesson.to_s
                 icon("fas", "square", class: "text-white")
               elsif study_module.contentable_type == Quiz.to_s
                 icon("fas", "stream", class: "text-white")
               end
               %>
-            </span>
+            <%# </span> %>
             <%=link_to_unless_current "#{index + 1}. #{study_module.name}", publish_course_path(@course, study_module_id: study_module.id) %>
           </li>
           <% end %>
-        </ol>
+        </ul>
       </div>
       <!-- <div id="settings">Settings</div> -->
     </div>
 
   </div>
   <div class="col-md-8 col-lg-9">
-    <div class="d-flex mt-3">
+    <div class="d-flex">
       <div class="modules bg-muted d-flex flex-column">
         <div id="editor" class="flex-grow-1 preview">
           <%= render "#{@contentable.class.table_name}/preview_form", contentable: @contentable %>
