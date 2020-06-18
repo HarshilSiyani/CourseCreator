@@ -134,6 +134,8 @@ c = Course.create!(
   teacher: z
   )
 
+Chatroom.create(course: c)
+
 ####################
 puts "AC lessons...."
 lessons = []
