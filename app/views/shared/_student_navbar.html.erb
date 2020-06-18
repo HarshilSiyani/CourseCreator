@@ -2,9 +2,6 @@
     <div class="navbar-brand">
       <%= link_to "Course Creator", root_path, class: "navbar-brand" %> / <%= @course.name %>
     </div>
-    <%= link_to root_path, class: "navbar-brand" do %>
-      Course Creator
-    <% end %>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>

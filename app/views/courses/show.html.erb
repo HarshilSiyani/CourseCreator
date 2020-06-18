@@ -1,40 +1,41 @@
-<div class = "d-flex justify-content-between align-items-center mx-3 my-5">
-  <div>
-    <h2 class="m-2"><%= @course.name %></h2>
+<div class="col-12 col-md-6 mx-auto">
+  <div class = "d-flex justify-content-between align-items-center mx-3 my-5">
+    <div>
+      <h2 class="m-2"><%= @course.name %></h2>
+    </div>
   </div>
-</div>
-
-<div class = "card mx-3 my-5 p-3">
-  <p>Category: <%= @course.category %></p>
-  <p><%= @course.description %></p>
-
-  <%= if (current_user.student?)
-    link_to_unless (current_user.enrollments.map(&:course).include?(@course)), "Enroll", course_enrollments_path(@course), method: :post, class: "btn btn-primary" do
-      link_to "Study", study_course_path(@course), class: "btn btn-primary "
-    end
-  elsif (current_user.teacher? && @is_my_course)
-    link_to "Edit", edit_course_path(@course, study_module_id: @course.study_modules.first), class: "btn btn-primary"
-  end%>
-</div>
-
-<% if (current_user.teacher? && @is_my_course) %>
   <div class = "card mx-3 my-5 p-3">
-    <h3>Students</h3>
-    <table>
-      <thead>
-        <th>Student</th>
-        <th>Email</th>
-        <th>Progress</th>
-      </thead>
-      <tbody>
-      <% @course.enrollments.each do |enrolled| %>
-        <tr class="mt-1">
-          <td><%= enrolled.student.full_name %></td>
-          <td><%= enrolled.student.email %></td>
-          <td><%= render partial: '/study/progresses/teacher_show', locals: { course: @course, current: ((enrolled.module_index/@total_modules) * 100)} %></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
+    <p><strong>Category:</strong> <%= @course.category %></p>
+    <p><%= @course.description %></p>
+
+    <%= if (current_user.student?)
+      link_to_unless (current_user.enrollments.map(&:course).include?(@course)), "Enroll", course_enrollments_path(@course), method: :post, class: "btn btn-primary" do
+        link_to "Study", study_course_path(@course), class: "btn btn-primary "
+      end
+    elsif (current_user.teacher? && @is_my_course)
+      link_to "Edit", edit_course_path(@course, study_module_id: @course.study_modules.first), class: "btn btn-primary"
+    end%>
   </div>
-<% end %>
+
+  <% if (current_user.teacher? && @is_my_course) %>
+    <div class = "card mx-3 my-5 p-3">
+      <h3>Students</h3>
+      <table>
+        <thead>
+          <th>Student</th>
+          <th>Email</th>
+          <th>Progress</th>
+        </thead>
+        <tbody>
+        <% @course.enrollments.each do |enrolled| %>
+          <tr class="mt-1">
+            <td><%= enrolled.student.full_name %></td>
+            <td><%= enrolled.student.email %></td>
+            <td><%= render partial: '/study/progresses/teacher_show', locals: { course: @course, current: ((enrolled.module_index/@total_modules) * 100)} %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>

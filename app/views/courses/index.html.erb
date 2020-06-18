@@ -3,7 +3,7 @@
     <h2 class="m-2">Your courses</h2>
   </div>
   <div>
-    <%= link_to "Add Course", new_course_path, class: "btn btn-primary ml-5" %>
+    <%= link_to "Add Course", new_course_path, class: "btn btn-outline-secondary ml-5" %>
   </div>
 </div>
 <div class = "d-flex flex-wrap">
@@ -14,7 +14,7 @@
     <h5 class="card-title"><%= course.category %></h5>
     <p class="card-text desc"><%= course.description %></p>
   </div>
-  <%= link_to "View", course_path(course), class: "btn btn-primary" %>
+  <%= link_to "View", course_path(course), class: "btn btn-secondary" %>
 </div>
 <% end %>
 </div>
