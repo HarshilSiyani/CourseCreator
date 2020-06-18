@@ -1,6 +1,5 @@
 class CoursesController < ApplicationController
-layout :student_layout
-
+  layout :student_layout
   skip_before_action :authenticate_user!, only: :index
   before_action :set_course, only: [:edit, :update, :publish]
 
@@ -29,6 +28,8 @@ layout :student_layout
   def show
     @course = Course.find(params[:id])
     @total_modules = @course.study_modules.count.to_f
+    @is_teacher = current_user.enrollments.count.positive?
+    @is_my_course = current_user == @course.teacher
   end
 
   def index
@@ -44,16 +45,17 @@ layout :student_layout
       @quiz = Quiz.new
       @quiz.study_module = StudyModule.new
     else
-    @contentable = @course.study_modules.find(params[:study_module_id]).contentable
+      @contentable = @course.study_modules.find(params[:study_module_id]).contentable
     end
   end
 
   def publish
-
-
     study_module = @course.study_modules.find(params[:study_module_id])
 
-    redirect_to course_path(@course) unless current_user == @course.teacher || current_user.enrollments.map(&:course).include?(@course)
+    unless current_user == @course.teacher || current_user.enrollments.map(&:course).include?(@course)
+      redirect_to course_path(@course)
+    end
+
     @contentable = study_module.contentable
   end
 
@@ -81,6 +83,7 @@ layout :student_layout
   end
 
   def student_layout
-    current_user.enrollments.size.positive? && current_user.enrollments.map(&:course).include?(@course) ? "student_view" : "application"
+    my_enrollments = current_user.enrollments
+    my_enrollments.size.positive? && my_enrollments.map(&:course).include?(@course) ? "student_view" : "application"
   end
 end
