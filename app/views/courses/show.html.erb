@@ -7,16 +7,16 @@
 <div class = "card mx-3 my-5 p-3">
   <p>Category: <%= @course.category %></p>
   <p><%= @course.description %></p>
-  <%= if (@is_teacher)
-    link_to_unless (@is_teacher && current_user.enrollments.map(&:course).include?(@course)), "Enroll", course_enrollments_path(@course), method: :post, class: "btn btn-primary" do
+  <%= if (current_user.student?)
+    link_to_unless (current_user.enrollments.map(&:course).include?(@course)), "Enroll", course_enrollments_path(@course), method: :post, class: "btn btn-primary" do
       link_to "Study", study_course_path(@course), class: "btn btn-primary "
     end
-  elsif (@is_my_course)
+  elsif (current_user.teacher? && @is_my_course)
     link_to "Edit", edit_course_path(@course, study_module_id: @course.study_modules.first), class: "btn btn-primary"
   end%>
 </div>
 
-<% if (@is_my_course) %>
+<% if (current_user.teacher? && @is_my_course) %>
   <div class = "card mx-3 my-5 p-3">
     <h3>Students</h3>
     <table>
