@@ -51,14 +51,15 @@ export default class extends Controller {
       }
     })
 
-    if (correctCount === Object.keys(correctAnswers).length)
+    if (correctCount === Object.keys(correctAnswers).length) {
       this.letUserProceed();
+    }
   }
 
   letUserProceed() {
     // console.log("User can proceed");
     const navBtns = document.querySelectorAll(".module-nav-right");
-    if (navBtns) {
+    if (navBtns && Object.keys(navBtns).length >= 2) {
       navBtns[0].style.display = "none";
       navBtns[1].style.display = "inline";
     }
@@ -68,7 +69,7 @@ export default class extends Controller {
     let checkCount = 0;
     let iconCount = 0;
 
-    const checkboxes = this.formTarget.querySelectorAll("input[type='checkbox']")
+    const checkboxes = this.formTarget.querySelectorAll("input[type='radio']")
 
     checkboxes.forEach((box, index) => {
       if (box.checked) checkCount += 1;
