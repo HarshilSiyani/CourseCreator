@@ -1,7 +1,9 @@
 <div class="d-flex justify-content-between align-items-center my-5">
   <h2 class="m-2"><b><%= @course.name %></b></h2>
   <div>
-    <%= link_to  "Preview Course", publish_course_path(@course, study_module_id: @contentable.study_module.id), class: "btn btn-primary" %>
+    <% if @contentable %>
+    <%= link_to "Preview Course", publish_course_path(@course, study_module_id: @contentable.study_module.id), class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>
 <div class="row">

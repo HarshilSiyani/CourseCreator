@@ -44,7 +44,9 @@ class CoursesController < ApplicationController
     elsif params[:quiz] == "true"
       @quiz = Quiz.new
       @quiz.study_module = StudyModule.new
-    else
+    end
+
+    if params[:study_module_id]
       @contentable = @course.study_modules.find(params[:study_module_id]).contentable
     end
   end

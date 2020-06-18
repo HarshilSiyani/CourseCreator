@@ -25,7 +25,7 @@
 
       </div>
     </div>
-    <%= link_to "Edit course", edit_course_path(@course, study_module_id: @course.study_module_ids.first), class: "btn btn-primary" %>
+    <%= link_to "Edit course", edit_course_path(@course, study_module_id: @contentable.study_module), class: "btn btn-primary" %>
   </div>
   <% end %>
 </div>
