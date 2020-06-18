@@ -123,7 +123,8 @@ z = User.create!(
   last_name: "Chung",
   nickname: "zachchung",
   email: "zach@study.com",
-  password: "abc123"
+  password: "abc123",
+  role: "teacher"
   )
 
 puts "AC course...."
