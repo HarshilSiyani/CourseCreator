@@ -15,14 +15,14 @@
     "email": "harshil@study.com",
     "nickname": "HS"
   },
-  {
-    "role": "teacher",
-    "first_name": "Zachary",
-    "last_name": "Chung",
-    "password": "abc123",
-    "email": "zach@study.com",
-    "nickname": "zachchung"
-  },
+  // {
+  //   "role": "teacher",
+  //   "first_name": "Zachary",
+  //   "last_name": "Chung",
+  //   "password": "abc123",
+  //   "email": "zach@study.com",
+  //   "nickname": "zachchung"
+  // },
   {
     "role": "student",
     "first_name": "Lisa",
