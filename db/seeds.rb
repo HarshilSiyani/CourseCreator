@@ -80,7 +80,7 @@ puts "Seeding Study Modules..."
 puts "Sowing Lessons..."
 lessons = JSON.parse(File.open('db/seed_data/lessons.json').read)
 quizzes = JSON.parse(File.open('db/seed_data/quizzes.json').read)
-course_ruby = Course.find_by(name: "Learn Ruby Basics")
+course_ruby = Course.find_by(name: "Ruby Basics")
 
 lessons.each_with_index do |lesson, index|
   record = Lesson.new(text: lesson["text"])
