@@ -16,10 +16,10 @@
             </div>
             <div class= "row mt-5">
             <%= link_to_if(@current_user.nil?, "Start Teaching", new_user_session_path, class: "border border-dark p-3 rounded text-dark col-12 col-md-5 mr-2") do 
-              link_to "Start Teaching #{icon("fas", "arrow-right")}".html_safe, user_courses_path(current_user), class: "border border-dark p-3 rounded text-dark col-12 col-md-5 mr-2"
+              link_to "Start Teaching #{icon("fas", "arrow-right")}".html_safe, user_courses_path(current_user), class: "border border-dark p-3 rounded text-dark col-12 col-md-5 mr-2" if current_user.teacher?
             end %>
             <%= link_to_if(@current_user.nil?, "Start Studying", new_user_session_path, class: "border border-dark p-3 rounded text-dark col-12 col-md-5 mr-2") do
-              link_to "Start Studying #{icon("fas", "arrow-right")}".html_safe, user_enrollments_path(current_user), class: "border border-dark p-3 rounded text-dark col-12 col-md-5"
+              link_to "Start Studying #{icon("fas", "arrow-right")}".html_safe, user_enrollments_path(current_user), class: "border border-dark p-3 rounded text-dark col-12 col-md-5" if current_user.student?
             end %>
             <%#= link_to "Start Teaching", user_courses_path(current_user), class: "border border-dark p-3 rounded text-dark col-12 col-md-5 mr-2" %>
             <%#= link_to "Start Studying", user_enrollments_path(current_user), class: "border border-dark p-3 rounded text-dark col-12 col-md-5" %>
