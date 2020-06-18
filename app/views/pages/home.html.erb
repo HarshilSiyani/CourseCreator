@@ -1,21 +1,46 @@
 <!-- <h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p> -->
-<div class="banner_home">
+  <p>Find me in app/views/pages/home.html.erb</p> -->
+  <div class="banner_home">
 
-<div class="container">
-  <section class = "row">
-    <div class="col-6">
-      <%= image_tag "MacbookFinal.png", alt: "alttext", class: "img-fluid" %>
-      <!-- <h1 class="headline">Teach Remote</h1> -->
+    <div class="container rectangle-box">
+      <section class = "row">
+        <div class="col-6">
+          <%= image_tag "MacbookFinal.png", alt: "alttext", class: "img-fluid" %>
+          <!-- <h1 class="headline">Teach Remote</h1> -->
 
+        </div>
+        <div class="col-6 d-flex align-items-center">
+          <div class="homepage-text">
+            <div>
+              <h1>Teach.</h1><h1 id="typewriter" style = "font-size: 5vw;"></h1>
+            </div>
+            <div class= "row mt-5">
+            <%= link_to "Start Teaching", user_courses_path(current_user), class: "border border-dark p-3 rounded text-dark col-12 col-md-5 mr-2" %>
+            <%= link_to "Start Studying", user_enrollments_path(current_user), class: "border border-dark p-3 rounded text-dark col-12 col-md-5" %>
+            </div>
+            <%= image_tag "background-study.png", alt: "alttext", class: "img-fluid study-img" %>
+          </div>
+        </div>
+      </section>
     </div>
-    <div class="col-6 d-flex align-items-center">
-      <h1>teach online</h1>
-    </div>
-  </section>
+  </div>
+      <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+      <script>
+        const instance = new Typewriter('#typewriter', {
+          loop: true,
+        });
 
-</div>
-</div>
+        instance.typeString("Online. ")
+        .deleteAll()
+        .typeString("Remote. ")
+        .pause(1000)
+        .deleteAll()
+        .typeString("Anywhere. ")
+        .pause(1000)
+        .deleteAll()
+        .typeString("Anyone. ") .pause(1000)
+        .start();
+      </script>
 
 
 
