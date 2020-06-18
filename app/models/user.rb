@@ -15,8 +15,17 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}".strip
   end
 
+  def teacher?
+    role == "teacher"
+  end
+
+  def student?
+    role == "student"
+  end
+
   private
-    def create_default_course
-      Course.default_course(self)
-    end
+
+  def create_default_course
+    Course.default_course(self)
+  end
 end
