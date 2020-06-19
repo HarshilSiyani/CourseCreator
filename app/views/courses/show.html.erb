@@ -1,4 +1,4 @@
-<div class="col-12 col-md-6 mx-auto">
+<div class="col-12 offset-md-2 col-md-8 offset-md-2">
   <div class = "d-flex justify-content-between align-items-center mx-3 my-5">
     <div>
       <h2 class="m-2"><%= @course.name %></h2>
@@ -20,17 +20,19 @@
   <% if (current_user.teacher? && @is_my_course) %>
     <div class = "card mx-3 my-5 p-3">
       <h3>Students</h3>
-      <table>
+      <table class="table table-hover table-sm">
         <thead>
-          <th>Student</th>
-          <th>Email</th>
-          <th>Progress</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Currently at</th>
+          <th scope="col">Progress</th>
         </thead>
         <tbody>
         <% @course.enrollments.each do |enrolled| %>
           <tr class="mt-1">
             <td><%= enrolled.student.full_name %></td>
             <td><%= enrolled.student.email %></td>
+            <td><%= @course.study_modules.find_by(index: enrolled.module_index)&.name %></td>
             <td><%= render partial: '/study/progresses/teacher_show', locals: { course: @course, current: (((enrolled.module_index - 1)/@total_modules) * 100)} %></td>
           </tr>
         <% end %>

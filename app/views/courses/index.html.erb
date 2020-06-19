@@ -6,15 +6,20 @@
     <%= link_to "Add Course", new_course_path, class: "btn btn-outline-secondary ml-5" %>
   </div>
 </div>
-<div class = "d-flex flex-wrap">
-<% @courses.each do |course| %>
-  <div class="card bg-light mb-3 m-5" style="max-width: 18rem;min-width: 18rem;">
-  <div class="card-header name-desc"><h4><b><%= course.name %></b></h4></div>
-  <div class="card-body">
-    <h5 class="card-title"><%= course.category %></h5>
-    <p class="card-text desc"><%= course.description %></p>
+
+<div class="row">
+<% @courses.each_with_index do |course, index| %>
+<%= '<div class="card-group">'.html_safe if index % 3 == 0 %>
+<%# <div class="col-sm-4"> %>
+  <div class="card bg-light mb-3 m-5">
+    <div class="card-header name-desc"><h4><b><%= course.name %></b></h4></div>
+    <div class="card-body">
+      <h5 class="card-title"><%= course.category %></h5>
+      <p class="card-text desc"><%= course.description %></p>
+    </div>
+    <%= link_to "View", course_path(course), class: "btn btn-outline-primary" %>
   </div>
-  <%= link_to "View", course_path(course), class: "btn btn-outline-primary" %>
-</div>
+<%# </div> %>
+<%= '</div>'.html_safe if index % 3 == 2 %>
 <% end %>
 </div>
