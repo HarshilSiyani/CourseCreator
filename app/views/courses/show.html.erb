@@ -31,7 +31,7 @@
           <tr class="mt-1">
             <td><%= enrolled.student.full_name %></td>
             <td><%= enrolled.student.email %></td>
-            <td><%= render partial: '/study/progresses/teacher_show', locals: { course: @course, current: ((enrolled.module_index/@total_modules) * 100)} %></td>
+            <td><%= render partial: '/study/progresses/teacher_show', locals: { course: @course, current: (((enrolled.module_index - 1)/@total_modules) * 100)} %></td>
           </tr>
         <% end %>
         </tbody>
