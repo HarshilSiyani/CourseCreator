@@ -6,7 +6,9 @@
     <%# List user's courses & link to the chatroom %>    
     <% if !current_user.courses.empty? && current_user.teacher? %>
       <% current_user.courses.each do |course| %>
-        <%=link_to_unless_current course.name, chat_course_path(course), class: "dropdown-item" %>
+        <%= link_to_unless_current course.name, chat_course_path(course), class: "dropdown-item" do
+          content_tag :div, "# #{course.name}".html_safe, class: "dropdown-item"
+        end %>
       <% end %>
     <% end %>
     
