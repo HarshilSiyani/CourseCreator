@@ -32,6 +32,10 @@ class User < ApplicationRecord
     enrollments.map(&:course).include?(course)
   end
 
+  def course?(course)
+    courses.include?(course)
+  end
+
   private
 
   def create_default_course
