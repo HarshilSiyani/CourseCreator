@@ -8,12 +8,9 @@ class EnrollmentsController < ApplicationController
     @enrollment = Enrollment.new(enrollment_params)
     @enrollment.student = current_user
     @enrollment.module_index = 1
+
     if @enrollment.save
-      flash[:notice] = render_to_string(partial: "chat/messages/welcome", locals: { user: current_user })
-      NotificationChannel.broadcast_to(
-        @enrollment.course.teacher,
-        render_to_string(partial: "chat/messages/enrollment", locals: { user: current_user })
-      )
+      notifiy_new_enrollment(@enrollment)
       redirect_to user_enrollments_path(current_user)
     else
       redirect_to course_path(@enrollment.course)
@@ -30,7 +27,11 @@ class EnrollmentsController < ApplicationController
     params.permit(:course_id)
   end
 
-  # def enrollment_set
-  #   @enrollment = Enrollment.find(params[:id])
-  # end
+  def notifiy_new_enrollment(enrollment)
+    flash[:notice] = render_to_string(partial: "chat/messages/welcome", locals: { user: current_user })
+    NotificationChannel.broadcast_to(
+      enrollment.course.teacher,
+      render_to_string(partial: "chat/messages/enrollment", locals: { user: current_user })
+    )
+  end
 end
