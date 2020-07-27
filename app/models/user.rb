@@ -23,6 +23,19 @@ class User < ApplicationRecord
     role == "student"
   end
 
+  def find_my_enrollment(course)
+    enrollments.find_by(course_id: course.id)
+  end
+
+  def currently_enrolled?(course)
+    # current_user.enrollments.map(&:course).include?(course)
+    enrollments.map(&:course).include?(course)
+  end
+
+  def course?(course)
+    courses.include?(course)
+  end
+
   private
 
   def create_default_course

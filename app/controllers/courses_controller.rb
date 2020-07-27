@@ -37,28 +37,25 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    # raise
-    if params[:lesson] == "true"
-      @lesson = Lesson.new
-      @lesson.study_module = StudyModule.new
-    elsif params[:quiz] == "true"
-      @quiz = Quiz.new
-      @quiz.study_module = StudyModule.new
-    end
+    @current_module = @course.find_module_or_first(params[:study_module_id])
+    conditional_params = params[:study_module_id] || params[:type]
+    redirect_to edit_course_path(@course, study_module_id: @current_module) and return unless conditional_params
 
-    if params[:study_module_id]
-      @contentable = @course.study_modules.find(params[:study_module_id]).contentable
-    end
+    # raise
+    @contentable = @current_module.contentable
+    return unless params[:type] == 'lesson' || params[:type] == 'quiz'
+
+    @contentable = params[:type].capitalize.constantize.new
+    @contentable.study_module = StudyModule.new
   end
 
   def publish
-    study_module = @course.study_modules.find(params[:study_module_id])
+    redirect_to course_path(@course) and return unless current_user.teacher? || current_user.course?(@course)
 
-    unless current_user == @course.teacher || current_user.enrollments.map(&:course).include?(@course)
-      redirect_to course_path(@course)
-    end
+    @current_module = @course.find_module_or_first(params[:study_module_id])
+    @contentable = @current_module.contentable
 
-    @contentable = study_module.contentable
+    redirect_to publish_course_path(@course, study_module_id: @current_module) unless params[:study_module_id]
   end
 
   private
@@ -69,6 +66,10 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(:category, :name, :description)
+  end
+
+  def new_contentable_params
+    params.permit(:id, :study_module_id, :lesson, :quiz)
   end
 
   def default_lesson(course)

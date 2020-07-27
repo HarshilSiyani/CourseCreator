@@ -9,14 +9,12 @@
             <% @course.study_modules.each_with_index do |study_module, index| %>
             <li class = "p-1">
               <span class="fa-li">
-                <%= if @enrollment.module_index >= study_module.index
-                  icon("fas", "check-square", class: "text-white")
-                elsif study_module.contentable_type == Lesson.to_s
-                  icon("fas", "square", class: "text-secondary")
-                elsif study_module.contentable_type == Quiz.to_s
-                  icon("fas", "stream", class: "text-secondary")
-                end
-                %>
+                <% if @enrollment.module_index >= study_module.index %>
+                  <%= icon("fas", "check-square", class: "text-white") %>
+                <% else %>
+                  <%= icon("fas", "square", class: "text-secondary") if study_module.lesson? %>
+                  <%= icon("fas", "stream", class: "text-secondary") if study_module.quiz? %>
+                <% end %>
               </span>
               <%= link_to_if (study_module.index <= @enrollment.module_index && request.fullpath != study_course_path(@course, study_module_id: study_module.id)),
               "#{index + 1}. #{study_module.name}", study_course_path(@course, study_module_id: study_module.id)
@@ -32,16 +30,14 @@
       <div class="sticky-top" style="background: #fff; z-index: 999;">
         <div class="d-flex justify-content-between align-items-center">
           <div>
-            <% is_first_module = @current_module == @course.first_module %>
-            <%= link_to_unless (is_first_module), "#{icon("fas", "angle-left", class: "fa-lg module-nav-left")} Prev".html_safe, study_course_path(@course, study_module_id: @current_module.previous_module), class: "btn text-secondary border" do 
+            <%= link_to_unless (@current_module.first_module?), "#{icon("fas", "angle-left", class: "fa-lg module-nav-left")} Prev".html_safe, study_course_path(@course, study_module_id: @current_module.previous_module), class: "btn text-secondary border" do 
               "Start of course"
             end %>
           </div>
           <h4 class="text-small m-2"><b><%= @current_module.name %></b></h4>
           <div>
-            <% is_last_module = @current_module == @course.last_module %>
-            <%= icon("fas", "angle-right", class: "fa-lg module-nav-right text-secondary", style: "display: #{(@quiz_passed || (is_last_module)) ? "none" : "inline" };") %>
-            <%= link_to_unless (is_last_module), "Next #{icon("fas", "angle-right", class: "fa-lg")}".html_safe, study_course_path(@course, study_module_id: @current_module.next_module), class: "module-nav-right btn text-secondary border", style: "display: #{@quiz_passed ? "inline" : "none" };" do 
+            <%= icon("fas", "angle-right", class: "fa-lg module-nav-right text-secondary", style: "display: #{(@quiz_passed || @current_module.last_module?) ? "none" : "inline" };") %>
+            <%= link_to_unless (@current_module.last_module?), "Next #{icon("fas", "angle-right", class: "fa-lg")}".html_safe, study_course_path(@course, study_module_id: @current_module.next_module), class: "module-nav-right btn text-secondary border", style: "display: #{@quiz_passed ? "inline" : "none" };" do 
               "End of course"
             end %>
           </div>

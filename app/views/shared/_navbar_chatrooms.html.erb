@@ -15,7 +15,9 @@
     <%# List user's enrollments & link to the chatroom %>
     <% if !current_user.enrollments.empty? && current_user.student? %>
       <% current_user.enrollments.each do |enrollment| %>
-        <%= link_to enrollment.course.name, chat_course_path(enrollment.course), class: "dropdown-item" %>
+        <%= link_to_unless_current enrollment.course.name, chat_course_path(enrollment.course), class: "dropdown-item" do
+          content_tag :div, "# #{enrollment.course.name}".html_safe, class: "dropdown-item"
+        end %>
       <% end %>
     <% end %>
     <%# If user has no courses %>

@@ -4,18 +4,29 @@ class Course < ApplicationRecord
   has_many :students, through: :enrollments, foreign_key: :student_id
   has_many :study_modules
   # belongs_to :user, foreign_key: "teacher_id"
-  validates :description, length: { minimum: 30,
-    too_short: "requires minimum of %{count} characters" }
+  validates :description, length: { minimum: 30, too_short: "requires minimum of %{count} characters" }
   validates :name, presence: true
   validates :category, presence: true
   has_one :chatroom
 
   def first_module
-    study_modules.first
+    study_modules.includes(:contentable).first
   end
 
   def last_module
-    study_modules.last
+    study_modules.includes(:contentable).last
+  end
+
+  def find_module(study_module)
+    study_modules.includes(:contentable).find(study_module)
+  end
+
+  def find_module_or_first(study_module_id = nil)
+    if study_module_id
+      find_module(study_module_id)
+    else
+      first_module
+    end
   end
 
   def self.default_course(user)

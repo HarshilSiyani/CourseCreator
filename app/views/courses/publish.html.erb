@@ -36,14 +36,14 @@
         <ul class="fa-ul">
           <% @course.study_modules.each_with_index do |study_module, index| %>
           <li class="m-1">
-            <%# <span class="fa-li"> %>
-              <%#= if study_module.contentable_type == Lesson.to_s
+            <span class="fa-li">
+              <%= if study_module.lesson?
                 icon("fas", "square", class: "text-white")
-              elsif study_module.contentable_type == Quiz.to_s
+              elsif study_module.quiz?
                 icon("fas", "stream", class: "text-white")
               end
               %>
-            <%# </span> %>
+            </span>
             <%=link_to_unless_current "#{index + 1}. #{study_module.name}", publish_course_path(@course, study_module_id: study_module.id) %>
           </li>
           <% end %>
