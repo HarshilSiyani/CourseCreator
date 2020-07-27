@@ -1,12 +1,4 @@
-[
-  {
-    "role": "teacher",
-    "first_name": "Erik",
-    "last_name": "Tran",
-    "password": "abc123",
-    "email": "erik@study.com",
-    "nickname": "erik.tran.tt"
-  },
+
   {
     "role": "teacher",
     "first_name": "Harshil",
@@ -15,14 +7,6 @@
     "email": "harshil@study.com",
     "nickname": "HS"
   },
-  // {
-  //   "role": "teacher",
-  //   "first_name": "Zachary",
-  //   "last_name": "Chung",
-  //   "password": "abc123",
-  //   "email": "zach@study.com",
-  //   "nickname": "zachchung"
-  // },
   {
     "role": "student",
     "first_name": "Lisa",

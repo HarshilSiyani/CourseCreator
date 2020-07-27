@@ -29,6 +29,7 @@ gem 'image_processing', '~> 1.2'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem "cocoon"
 gem 'devise'
+gem 'rails_admin', '~> 2.0'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
