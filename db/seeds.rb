@@ -39,7 +39,7 @@ JSON.parse(course_file).each do |record|
     description: record["description"].join(" "),
     category: record["category"],
     published: record["published"],
-    teacher: teachers[1]
+    teacher: teachers[0]
   })
 
 
