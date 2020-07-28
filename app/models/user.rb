@@ -2,12 +2,13 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  :recoverable, :rememberable, :validatable
 
   has_many :courses, foreign_key: "teacher_id", dependent: :destroy
   has_many :enrollments, foreign_key: "student_id"
   after_create :create_default_course
   has_one_attached :photo
+  before_create :set_default_role
 
   validates :nickname, presence: true, uniqueness: true
 
@@ -40,5 +41,9 @@ class User < ApplicationRecord
 
   def create_default_course
     Course.default_course(self)
+  end
+
+  def set_default_role
+    role ||= 'teacher'
   end
 end
